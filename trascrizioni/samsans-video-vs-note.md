@@ -362,3 +362,13 @@ Format: **timestamp** — summary — *→ note.txt section it belongs to*.
 | Fishman (deck, future session) | — |
 
 People referenced (not cards): Josh, Elijah, Kamera, Jelly Beans.
+
+
+---
+
+## 6. Frame visibile del video (miniatura YouTube) — lista «17hawklaw»
+
+OPTCGSim, file «..17hawklaw», 51/51 con il leader. Conteggio dalle pile (img/video-frame-17hawklaw.jpg):
+Leader Dracule Mihawk OP14-020 · 4 Otama OP07-022 · 4 Perona OP12-034 · 4 Kin'emon ST32-001 · 4 Vander Decken IX OP06-033 · 2 Jewelry Bonney OP07-026 · 4 Kawamatsu OP12-023 · 4 Yasopp OP17-031 · 4 Kouzuki Oden ST32-002 · 4 Trafalgar Law OP13-031 · 3 Shanks OP17-022 · 1 Law & Bepo ST24-004 · 4 You Can Be My Samurai!! OP01-055 · 3 Billion-fold OP06-038 · 3 Electrical Luna OP08-036 · 2 Coffin Boat OP14-039 = 50.
+
+È la versione Law + Yasopp (con 2 Stun Bonney, senza For Fun), non la lista personale Mihawk + Perona di Sam. Lo stream video non è scaricabile in questo ambiente (403 senza runtime JS per yt-dlp), quindi non è stato possibile leggere altri frame.
