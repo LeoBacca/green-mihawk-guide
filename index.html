@@ -23,6 +23,7 @@ body{background:var(--bg);color:var(--text);font-family:"Segoe UI",system-ui,-ap
 @media (min-width:900px){:root{--fs:20px}}
 ::selection{background:var(--verde);color:#04140a}
 img{max-width:100%;display:block}
+[hidden]{display:none!important}
 a{color:var(--verde)}
 
 header{position:sticky;top:0;z-index:50;background:rgba(7,13,10,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
@@ -77,14 +78,16 @@ strong{color:var(--oro);font-weight:800}
 .fig img{border-radius:12px;border:1px solid var(--line);width:100%}
 .fig figcaption{font-size:.85rem;color:var(--muted);margin-top:6px;text-align:center}
 
-/* source badges: Impact (blu) / Sam (viola) / Sintesi (oro) */
+/* source badges: Impact (blu) / Sam (viola) / Sintesi (oro) / Confronto LawSopp vs HawkRona (verde) */
 .src{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:900;letter-spacing:.14em;text-transform:uppercase;border-radius:8px;padding:4px 10px;margin:0 0 10px;vertical-align:middle}
 .src.impact{background:var(--blu-deep);color:#fff;border:1px solid var(--blu)}
 .src.sam{background:var(--viola-deep);color:#fff;border:1px solid var(--viola)}
 .src.both{background:var(--oro);color:#1a1200;border:1px solid var(--oro)}
+.src.vs{background:var(--verde-deep);color:#fff;border:1px solid var(--verde)}
 .quote{background:var(--panel2);border:1px solid var(--line);border-left:6px solid var(--blu);border-radius:14px;padding:16px 16px 14px;margin:12px 0 16px}
 .quote.sam{border-left-color:var(--viola)}
 .quote.both{border-left-color:var(--oro)}
+.quote.vs{border-left-color:var(--verde)}
 .quote.video{border-left-color:var(--viola);border-style:dashed}
 .quote h4{margin:0 0 8px;color:#fff;font-size:1.08rem}
 .quote ul,.quote ol{margin-left:20px}
@@ -94,6 +97,7 @@ strong{color:var(--oro);font-weight:800}
 .quote .who{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:900;color:var(--blu);margin-bottom:6px}
 .quote.sam .who,.quote.video .who{color:var(--viola)}
 .quote.both .who{color:var(--oro)}
+.quote.vs .who{color:var(--verde)}
 .ts{font-size:.78rem;font-weight:800;color:var(--oro);text-decoration:none;border:1px solid var(--oro-deep);border-radius:6px;padding:1px 7px;margin-left:4px;white-space:nowrap;vertical-align:middle}
 .ts:hover{color:#fff;border-color:var(--oro)}
 
@@ -173,6 +177,24 @@ table.t th{background:var(--panel2);text-transform:uppercase;font-size:.72rem;le
 .chap a{font-weight:900;text-decoration:none;color:var(--oro);white-space:nowrap}
 .chap span{color:var(--text)}
 
+/* quiz "Che mazzo sei?" */
+.qz-q{background:var(--panel2);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.qz-q h3{font-size:1.08rem;color:#fff;margin:0 0 12px;display:flex;gap:10px;align-items:baseline}
+.qz-q h3 .qn{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:30px;border-radius:9px;background:var(--verde-deep);color:#fff;font-size:.9rem;font-weight:900;flex:0 0 auto}
+.qz-opt{display:block;width:100%;text-align:left;cursor:pointer;background:var(--panel);border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:.98rem;line-height:1.45;border-radius:10px;padding:10px 14px;margin-bottom:8px;transition:.15s}
+.qz-opt:hover{border-color:var(--verde-deep)}
+.qz-opt.sel{background:var(--verde-soft);border-color:var(--verde);font-weight:800}
+.qz-progress{font-size:.85rem;font-weight:800;letter-spacing:.08em;color:var(--muted);margin:12px 0;text-transform:uppercase}
+.qz-card{border-radius:16px;border:1px solid var(--line);padding:20px 18px;margin:14px 0;background:var(--panel2)}
+.qz-card.sam{border-color:var(--viola);box-shadow:0 0 0 1px var(--viola) inset}
+.qz-card.impact{border-color:var(--blu);box-shadow:0 0 0 1px var(--blu) inset}
+.qz-card.tie{border-color:var(--oro);box-shadow:0 0 0 1px var(--oro) inset}
+.qz-card h3{margin:0 0 10px;font-size:1.35rem;color:#fff}
+.qz-card .who{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:900;color:var(--muted);margin-bottom:6px}
+.qz-card p{margin-bottom:10px}
+.qz-card p:last-child{margin-bottom:0}
+.qz-card a{font-weight:800}
+
 footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:.82rem;text-align:center;line-height:1.5}
 .back-top{position:fixed;right:14px;bottom:14px;background:var(--panel2);border:1px solid var(--line);color:var(--text);border-radius:12px;padding:10px 14px;text-decoration:none;font-size:.95rem;font-weight:800;z-index:40}
 .next{display:flex;justify-content:space-between;gap:10px;margin-top:20px;flex-wrap:wrap}
@@ -191,6 +213,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
       <button class="tab-btn" data-tab="gameplan">🎯 Gameplan</button>
       <button class="tab-btn" data-tab="matchup">⚔️ Matchup</button>
       <button class="tab-btn" data-tab="video">🎬 Video</button>
+      <button class="tab-btn" data-tab="quiz">🧭 Che mazzo sei?</button>
       <button class="tab-btn" data-tab="carte">📇 Carte</button>
     </nav>
   </div>
@@ -201,9 +224,9 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
 <!-- ======================= HOME / FILOSOFIA ======================= -->
 <div class="tab" id="tab-home">
   <div class="hero">
-    <div class="kicker">OP17 · The World's Strongest Warriors · aggiornata 30 ago 2026</div>
+    <div class="kicker">OP17 · The World's Strongest Warriors · aggiornata 31 ago 2026</div>
     <h1><span class="g">Green Mihawk</span> — <span class="o">tutto quello che c'è da sapere</span></h1>
-    <div class="sub">Filosofia, gameplan primo/secondo, fondamentali e matchup del Mihawk verde in OP17. Integra due guide: il PowerPoint <b>«Why is 10c Shanks So Broken? Srsly»</b> di Josh "Impact" Graham (versione <b>Law + Yasopp</b>) e il deep dive video <b>«op17 mihawk deep dive»</b> di samsansOP con le sue note ordinate (versione <b>Mihawk 6c + Perona</b>).</div>
+    <div class="sub">Filosofia, gameplan primo/secondo, fondamentali e matchup del Mihawk verde in OP17. Integra due guide: il PowerPoint <b>«Why is 10c Shanks So Broken? Srsly»</b> di Josh "Impact" Graham (versione <b>Law + Yasopp</b>) e il deep dive video <b>«op17 mihawk deep dive»</b> di samsansOP con le sue note ordinate (versione <b>Mihawk 6c + Perona</b>) — più il documento comparativo <b>«LawSopp vs HawkRona»</b>, integrato per argomenti in tutta la guida e distillato nel quiz <b>«Che mazzo sei?»</b>.</div>
     <div class="pills">
       <span class="pill verde">Midrange aggressivo</span>
       <span class="pill oro">Finisher: 10 Shanks + Luna</span>
@@ -217,7 +240,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
     </div>
   </div>
 
-  <div class="note"><b>Come leggere la guida.</b> Ogni blocco ha un'etichetta di fonte: <span class="src impact">Impact</span> = testo <b>verbatim</b> delle slide del pptx (Law + Yasopp); <span class="src sam">Sam</span> = testo <b>verbatim</b> delle note ordinate del video di samsansOP (Mihawk + Perona); i blocchi tratteggiati <b>«Sam · dal video»</b> sono aggiunte prese direttamente dal video, con timestamp cliccabile; <span class="src both">Sintesi</span> = confronto/integrazione scritto per questa guida. Il contenuto strategico è lasciato in inglese per non alterarlo; titoli e sintesi sono in italiano. Le ⚠️ segnalano i punti in cui le note non coincidono con quello che Sam dice nel video.</div>
+  <div class="note"><b>Come leggere la guida.</b> Ogni blocco ha un'etichetta di fonte: <span class="src impact">Impact</span> = testo <b>verbatim</b> delle slide del pptx (Law + Yasopp); <span class="src sam">Sam</span> = testo <b>verbatim</b> delle note ordinate del video di samsansOP (Mihawk + Perona); i blocchi tratteggiati <b>«Sam · dal video»</b> sono aggiunte prese direttamente dal video, con timestamp cliccabile; <span class="src vs">LawSopp vs HawkRona</span> = punti dal documento comparativo che mette le due versioni fianco a fianco (bordo verde); <span class="src both">Sintesi</span> = confronto/integrazione scritto per questa guida. Il contenuto strategico è lasciato in inglese per non alterarlo; titoli e sintesi sono in italiano. Le ⚠️ segnalano i punti in cui le note non coincidono con quello che Sam dice nel video.</div>
 
   <div class="sec-nav">
     <a href="#h-30s">In 30 secondi</a><a href="#h-fonti">Le due fonti</a><a href="#h-cosa">Cos'è il deck</a><a href="#h-op17">Identità OP17</a><a href="#h-confronto">Dove concordano / divergono</a>
@@ -245,6 +268,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
           <li><b>Coffin Boat</b>: 2 per entrambi, ma Sam ne giocava 1 e considera un terzo solo "convincibile".</li>
           <li><b>Vs Sabo</b>: Impact fa board control con Yasopp sui 2 costi; Sam (senza Yasopp) <b>attacca</b> e sconsiglia lo "starve" completo.</li>
           <li><b>Vs Kaido</b>: entrambi vanno <b>primi</b>, ma Sam dice che è l'unico matchup in cui lo fa.</li>
+          <li><b>In una riga</b>: Sam alza il <i>floor</i> (meno mani fallite), Impact alza il <i>ceiling</i> di tempo (più pressione). Indeciso? C'è il quiz «Che mazzo sei?».</li>
         </ul>
       </div>
     </div>
@@ -263,6 +287,11 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <p>Sessione video di <b>Sam (samsansOP)</b> del 29 ago 2026, registrata a Orlando prima del regionale, più le note strutturate del video. Copre: cosa è cambiato da OP16.5, scelte di lista (Decken, Shanks, Luna, Stun Bonney, shell Mihawk vs Law, Law/Bepo, Boats, Rad Beam, perché no Stronger/For Fun/DMG), mirror, Sabo, Rocks, Kaido, Big Mom gialli/Robin, Ace Luffy, principi generali, più 33 domande del Q&amp;A. Versione <b>Mihawk 6c + Perona 5c</b>. Nel video Sam dice che Josh (Impact) è «really high on» la lista Law/Yasopp: le due fonti sono quindi le due scuole di pensiero dello stesso gruppo di test.</p>
         <div class="minicards"><img src="carte/ST32-003.png" alt="Dracule Mihawk 6c"><span class="plus">+</span><img src="carte/OP14-033.png" alt="Perona 5c"></div>
       </div>
+    </div>
+    <div class="quote vs"><span class="who">Risorsa 3 · il confronto «LawSopp vs HawkRona»</span>
+      <h4>«Mihawk+Perona vs Law+Yasopp»</h4>
+      <p>Documento comparativo che mette le due scuole fianco a fianco su una quarantina di argomenti (identità, shell 5-6 costi, bombe, mirror, Sabo, gestione delle risorse) e chiude con una «Fast Decision Table» per scegliere la lista. Battezza le due versioni <b>HawkRona</b> (Sam · 6c Mihawk + Perona) e <b>LawSopp</b> (Impact · Law + Yasopp). I suoi punti sono integrati in tutta la guida nei blocchi col bordo verde, sezione per sezione; la tavola decisionale è diventata il quiz <b>«Che mazzo sei?»</b>.</p>
+      <div class="next" style="justify-content:flex-start;margin-top:10px"><button data-go="quiz">🧭 In crisi su quale giocare? Fai il quiz</button></div>
     </div>
   </section>
 
@@ -393,6 +422,16 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <tr><td>Black (Elbaph) Luffy</td><td>— (non trattato)</td><td>Stesso piano di Sabo ma attacchi più piccoli: sempre in faccia.</td></tr>
       </tbody>
     </table></div>
+    <div class="quote vs"><span class="who">LawSopp vs HawkRona · il confronto in cinque punti</span>
+      <ul>
+        <li><b>Stessa natura, due leve.</b> Entrambe sono midrange aggressivi proattivi: nessuna delle due scuole pensa che il Mihawk OP17 debba giocare da control lento. Ma Sam costruisce per un <b>floor più alto</b> — ridurre le mani fallite e arrivare al pivot Shanks con le carte, il board, le vite e i counter giusti — mentre Impact costruisce per un <b>ceiling di tempo più alto</b>: board veloce, DON!! extra convertiti in attacchi, avversario forzato dentro il kill range di Shanks.</li>
+        <li><b>Fonte del vantaggio.</b> HawkRona migliora la <b>qualità</b> delle risorse: card quality, sequencing pulito, filtraggio, timing dei freeze, disruption nel mirror. LawSopp aumenta la <b>quantità</b> e la velocità di conversione: volume di pescate, search ripetute, double development, pressione resiliente di Yasopp, attacchi coi DON!! gratis.</li>
+        <li><b>Punto debole.</b> HawkRona rinuncia a un po' di board control diretto (soprattutto vs Sabo) non sfruttando Yasopp a pieno; LawSopp può pescare il mix sbagliato di setup e brick, restare senza bersagli per Law o incastrarsi nel sequencing Samurai/Law. In breve: <b>scegli Sam se odi l'inconsistenza, scegli Impact se odi perdere il board presto</b>.</li>
+        <li><b>Skill test.</b> Sono entrambi mazzi difficili, ma nei punti opposti della partita: HawkRona testa life mapping, soglie di counter, quando saltare uno sviluppo di poco valore e la navigazione della corsa alle bombe; LawSopp testa il sequencing — search prima di Law, gestione dei bersagli, protezione del board, breakpoint di danno, letali multi-step.</li>
+        <li><b>Le due lezioni da portarsi a casa</b> (qualunque lista tu giochi): da Sam, «pescare di più non è migliorare la mano» — è la matematica di vite e counter a decidere se Shanks vince davvero. Da Impact, «non giocare Mihawk passivo» — costruisci board, converti i DON!! gratis in 7k e mappa l'avversario dentro il range di Shanks. Insieme sono i fondamentali più solidi del deck.</li>
+      </ul>
+      <div class="next" style="justify-content:flex-start;margin-top:10px"><button data-go="quiz">🧭 Ancora indeciso? Fai il quiz «Che mazzo sei?»</button></div>
+    </div>
   </section>
 
   <div class="next"><span></span><button data-go="deck">Avanti: Deck →</button></div>
@@ -582,6 +621,15 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li><b>Mihawk + Perona</b> se ti aspetti tanto mirror, Kaido e Ace Luffy: il corpo resta in piedi, filtri i brick, Perona blocca 2 attacchi da 6k e "float" in un altro 5 costi se muore; Sam stima che rinunci solo a «a couple points into Sabo».</li>
       </ul>
     </div>
+    <div class="quote vs"><span class="who">LawSopp vs HawkRona · dove sta il vero disaccordo</span>
+      <ul>
+        <li><b>Il costo di setup di Law.</b> Il disaccordo di fondo non è «Law è forte o debole?», ma se il suo costo di attivazione — aprire bene e far sopravvivere gli 1 costi — sia un <b>rischio reale</b> (Sam) o una <b>parte prevista e gestibile del motore</b> (Impact). Contro i mazzi che rimuovono efficientemente gli 1 costi l'argomento strutturale di Sam si rafforza; se invece dai molto peso all'interazione presto sul board, la valutazione di Impact su Yasopp diventa molto più convincente.</li>
+        <li><b>Yasopp risolve il problema del corpo riposato.</b> La costruzione LawSopp risolve apposta il difetto classico di Law («lascia un corpo di lato»): il deployment preferito da Law è proprio Yasopp, che entra riposato ma si rialza da solo a fine turno, rendendo il turno Law molto meno vulnerabile. Per Impact è il centro della build; per Sam un aiuto vero ma non decisivo nel mirror.</li>
+        <li><b>Due modi di usare Perona 1c.</b> Tutte e due le scuole la considerano fondamentale, ma per motivi diversi: Sam ne valorizza l'utilità indipendente (search e filtro che funzionano da soli), Impact l'<b>accesso ripetuto</b> via bounce di Law — bounce Perona → gioca un 5 costi → replay → dig verso Shanks, Luna, eventi e follow-up. È il modo in cui LawSopp guadagna ceiling e profondità di pescata.</li>
+        <li><b>Brick management.</b> Entrambi ammettono che il Mihawk verde bricka: Sam si affida al filtraggio incorporato (il 6c Mihawk butta fuori il brick attivamente), Impact al cycling attivo — Samurai, Coffin Boat, Kin'emon, DON!! del leader e i loop Law/Perona. Corollario di Sam: una carta in più non è sempre meglio, <b>se il brick originale ti resta in mano</b>. Corollario di Impact: la densità di pescate trova i pezzi non cercabili (Decken, Yasopp, Boat) e mantiene il follow-up.</li>
+        <li><b>Samurai.</b> Resta centrale per entrambi, ma Sam ci vede una potenziale anti-sinergia — Law vuole un corpo da bounceare, e il Samurai può esporre o consumare proprio i corpi che servono a Law — mentre Impact la gestisce coi DON!! in eccesso per convertire i Samurai senza incastrarsi.</li>
+      </ul>
+    </div>
   </section>
 
   <section class="block" id="d-scelte">
@@ -626,6 +674,9 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li><a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=6099s">01:41:39</a> Vs Kaido: "Lunas are very uniquely bad in this matchup — you are generally trying to pitch it away" (al massimo Luna solo il King per non morire).</li>
       </ul>
     </div>
+    <div class="quote vs"><span class="who">LawSopp vs HawkRona · Shanks, Luna, Decken e i freeze</span>
+      <p>Sulle bombe le due scuole sono quasi sovrapponibili. Entrambe vedono in Shanks il motivo per cui l'endgame OP17 è drasticamente più forte delle versioni precedenti, e in Vander Decken una <b>risposta premium ai personaggi grossi</b> (7-8+ DON!!), non un removal generico — tanto che per Sam ha reso sconvenienti anche i vecchi 7c/9c Shanks. La sfumatura: Sam legge Shanks+Luna soprattutto come <b>interazione da mirror</b> (Shanks rende il board avversario vulnerabile ai freeze), Impact come <b>pattern di chiusura universale</b> (congela il board mentre Shanks spinge danno e prepara il letale). Sui freeze c'è pieno accordo: comprano il turno che ti serve per uccidere, <b>non</b> prolungano la partita — nessuno dei due vuole tornare ai loop di controllo alla OP14.</p>
+    </div>
 
     <h3>Stun Bonney</h3>
     <div class="minicards"><img src="carte/OP07-026.png" alt="Jewelry Bonney OP07-026"></div>
@@ -640,6 +691,9 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
       <p>The card improves the mirror and has incidental value into yellow Big Mom decks. Against yellow Big Mom decks, Stun Bonney can stop their first major Big Mom turn. Those decks frequently have little productive to do if they are taken off their first important curve turn. Sam is not fully certain that Bonney is mandatory. It is an active testing choice, but she has been happy with its mirror role.</p>
     </div>
     <div class="box"><span class="lbl">Come funziona (Sintesi)</span><p>OP07-026 Jewelry Bonney (5c 6000): «Up to 1 of your opponent's rested Character or DON!! cards will not become active in your opponent's next Refresh Phase». Giocata sul tuo turno a 9 DON!! su un DON!! riposato dell'avversario, il turno dopo lui si rialza con 9 DON!! invece di 10: <b>niente Shanks</b>. Nel video <a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=1872s">00:31:12</a>: spegnere il 10 costi di Rocks "is good, but that's not why it's there"; Bonney non fa nulla vs Sabo (<a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=4554s">01:15:54</a>).</p></div>
+    <div class="quote vs"><span class="who">LawSopp vs HawkRona · la distinzione pratica più grossa</span>
+      <p>Il confronto tra le liste indica proprio qui la differenza più concreta: per Sam la Stun Bonney è la <b>major innovation</b> che ripara la debolezza strutturale del mirror andando primo — nega all'avversario il turno Shanks e inverte chi arriva per primo alla bomba; nella lista standard pubblicata da Impact e nel suo piano matchup, invece, non è un elemento centrale. Se ti aspetti un torneo pieno di mirror, questo è lo slot che pesa di più nella scelta.</p>
+    </div>
 
     <h3>Law &amp; Bepo</h3>
     <div class="minicards"><img src="carte/ST24-004.png" alt="Law & Bepo"></div>
@@ -664,6 +718,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
       </ul>
     </div>
     <div class="quote"><span class="who">Impact · Slide 21 (estratto)</span><p>Law and Bepo can extend the game an extra turn while developing 1 additional attacker. Good way to punish people who are playing around Shanks (swinging with everything). Law and Bepo cannot extend the game forever anymore due to Shanks + Decken stuff in the mirror so that's why we don't build our deck around it anymore, however I've really liked the 1 copy.</p></div>
+    <div class="note"><b>Peso diverso, stessa carta.</b> Dal confronto LawSopp vs HawkRona: Sam dà a Law &amp; Bepo più peso strategico nel mirror — la «seconda bomba» compatta che sostituisce una sequenza difensiva multi-carta e compra un turno intero; per Impact è un'estensione potente ma secondaria, la one-of che serve quando ti manca esattamente un turno. Su una cosa concordano in pieno: non è più l'identità del mazzo.</div>
 
     <h3>Coffin Boat</h3>
     <div class="minicards"><img src="carte/OP14-039.png" alt="Coffin Boat"></div>
@@ -679,6 +734,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
       <p>She could be convinced to play a third Boat, but she does not think Boat is as essential to OP17 Mihawk as it was to the event-heavier OP16.5 version.</p>
     </div>
     <div class="warn">⚠️ <b>Le note invertono il ragionamento.</b> Nel video (<a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=1294s">00:21:34</a>) Sam dice: "without the more expensive cards in the middle of your game like the Shankses, the seven and nine, it is just very easy for you to have DON open for you to convert the Rad Beams" — cioè senza i 7c/9c Shanks hai <b>più</b> DON!! liberi, quindi il DON!!-cheating dello stage serve meno; il secondo motivo è che ci sono molti meno eventi. Nel Q&amp;A (<a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=3487s">00:58:07</a>): "I would always play the Boat unless you need the DON for something else. You can always play the Boat after you refresh with your leader, so it doesn't take you off your curve" — solo i turni Luna lo impediscono.</div>
+    <div class="note"><b>Differenza secondaria ma reale.</b> Nel confronto tra le liste la Boat è uno dei pochi slot dove le due filosofie si vedono a occhio nudo: Impact la include esplicitamente come <b>infrastruttura di card-flow e brick management</b> (assieme a Samurai e Kin'emon); Sam è più bassa sulla densità Boat/eventi rispetto alle build vecchie, perché il deck ha molti meno eventi da convertire (per il motivo esatto detto a voce, vedi la ⚠️ qui sopra).</div>
 
     <h3>Rad Beam (Billion-fold)</h3>
     <div class="minicards"><img src="carte/OP06-038.png" alt="Billion-fold World Trichiliocosm"></div>
@@ -700,6 +756,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
       </ul>
     </div>
     <div class="note"><b>Nickname.</b> "Rad Beam" (Sam) e "Billions"/"Billionfold" (Impact) sono la stessa carta: <b>The Billion-fold World Trichiliocosm</b> OP06-038 — +2000 al leader o a un personaggio, +2000 in più se hai 8+ carte riposate: la versione verde di Radical Beam!! (OP01-029), da cui il soprannome.</div>
+    <div class="note"><b>Filosofia dei 2k.</b> Dal confronto tra le liste: HawkRona dà molto valore alla densità di counter 2000 «ordinari», perché nel mirror tanti attacchi sono colpi da una carta — è la difesa affidabile di metà partita. LawSopp ragiona più sul conteggio totale dei brick e sulla <b>conversione attiva</b> delle carte scomode: eventi e counter vanno usati e "intrecciati" fuori dalla mano prima che la intasino.</div>
   </section>
 
   <section class="block" id="d-tech">
@@ -940,6 +997,14 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li>Set up wins by aggressively pushing 7s and getting your opponent into Shanks kill ranges. Without a board you can play Shanks, tap down your stage / searcher and send a 10+12 swing. If it takes multiple Shanks to win, plan towards closing out games via multiple turns with multiple Shanks. This card is so broken lol.</li>
       </ul>
     </div>
+    <div class="quote vs"><span class="who">LawSopp vs HawkRona · stesse fasi, accenti diversi</span>
+      <ul>
+        <li><b>Early game</b>: obiettivo identico — prima di tutto l'accesso alle carte (searcher, draw, Samurai). Impact è più esplicito sul <b>prendere vita presto</b> per pescare i pezzi combo; Sam sul preservare le risorse e preparare la curva giusta verso il pivot mirror/Shanks.</li>
+        <li><b>Mid game</b>: Impact predica conversione di tempo senza tregua — 6k in campo che diventano 7k coi DON!! gratis, pressione sulla vita ogni singolo turno. Sam è più cauta sulla struttura delle risorse: sviluppa pressione <i>mantenendo</i> la mano, le soglie di counter e il board che servono al turno Shanks.</li>
+        <li><b>DON!! extra</b>: entrambi li riconoscono come il vantaggio che definisce Mihawk. Impact li spinge verso il danno immediato (più searcher, Samurai e cycling dei brick); Sam li spende dove avanzano il life mapping o la gestione di eventi e difesa, evitando sviluppi di poco valore.</li>
+        <li><b>Board ideale</b>: Sam vuole <b>robustezza</b> — corpi attivi stabili e una mano che regge il turno Shanks anche sotto pressione di counter (contando se quel board sopravvive davvero al pivot Shanks/Luna avversario); Impact vuole <b>densità di attaccanti</b> — un board largo di 6k appiccicosi che picchiano a 7k ogni turno. Da qui il peso che Impact dà a Billion-fold sulla protezione dei 6k: sono il ponte verso il letale di Shanks.</li>
+      </ul>
+    </div>
   </section>
 
   <section class="block" id="g-chiudere">
@@ -1051,6 +1116,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li>Plan one turn ahead: if the next turn uses all DON!!, convert your event now or it may remain dead in hand.</li>
       </ul>
     </div>
+    <div class="note"><b>Su questo sono d'accordo.</b> La gestione degli eventi difensivi è un vero skill test del deck per entrambe le scuole: Sam è intenzionale sui DON!! da lasciare su (i turni pieni Shanks/Luna li consumano quasi tutti), Impact conta i colpi effettivamente in arrivo, spende ~1 DON!! a turno per gli eventi quando serve e li "intreccia" fuori dalla mano prima che la intasino. Due formulazioni della stessa regola: pianifica l'evento un turno prima del turno all-in.</div>
     <div class="note"><b>Nota sul "filtro":</b> Impact filtra con il leader intendendo la scelta di quale carta riposare/ciclare (Kin'emon, Samurai, 6c Mihawk quando riposa pesca 1 scarta 1). Nella versione B il 6c Mihawk «filters bricks out of hand» ogni volta che attacca: per Sam questo vale quanto la carta in più di Law.</div>
   </section>
 
@@ -1066,6 +1132,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
       </ul>
       <p>Stun Bonney, Shanks, Luna, Vander Decken, and Law/Bepo all contribute directly or indirectly to mirror success.</p>
     </div>
+    <div class="note"><b>Quanto pesa il mirror nella costruzione.</b> È una vera differenza di priorità tra le due scuole: Sam è disposta a <b>sacrificare un po' di vantaggio nei non-mirror</b> per strumenti da mirror e consistenza — i flex slot si scelgono da lì. La guida di Impact si concentra invece sull'esecuzione della curva di pressione e della mappa del danno, che paga in tutti i matchup. Nessuna delle due ignora l'altro lato: è questione di dove metti i punti marginali.</div>
     <div class="quote sam"><span class="who">Sam · Know Which Attack Matters</span>
       <p>Before using DON!! for an attack, ask:</p>
       <ul>
@@ -1180,6 +1247,14 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li><a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=3288s">00:54:48</a> Pianifica i DON!! per Rad Beam: if you play the entire Shanks-Decken-Luna combo that takes all of your DON, so convert the Rad Beam the turn before.</li>
       </ul>
     </div>
+    <div class="quote vs"><span class="who">LawSopp vs HawkRona · come le due liste vivono il mirror</span>
+      <ul>
+        <li><b>Andare secondi</b>: accordo pieno — la progressione del secondo (doppio sviluppo → Shanks) è la sequenza favorita per entrambe le scuole; segui la curva normale e usa le pescate presto per assicurarti counter e bombe.</li>
+        <li><b>Vita</b>: Sam dà la soglia concettuale esatta (almeno 2 vite prima del loro turno a 10 DON!!, perché a 0 il deck non ha modi affidabili di sopravvivere); Impact dà la regola pratica sugli attacchi (contra i colpi piccoli presto: gli Shanks diventano troppo grossi da contrare). Sono le due metà della stessa regola.</li>
+        <li><b>Numeri d'attacco</b>: è Impact a dare i breakpoint concreti — 7k di default, 8k se non hanno DON!! su, 9k se non hanno 8 carte riposate, 10k per passare Billion-fold. Il focus di Sam è il traguardo: metti a 0 <b>tu per primo</b>, conservando abbastanza counter per sopravvivere alla ritorsione.</li>
+        <li><b>Il divario vero è la Stun Bonney</b>: per Sam ripara la debolezza strutturale di chi va primo (nega il turno Shanks avversario e ribalta chi bomba per primo); nel piano pubblicato di Impact non è centrale. In un torneo pieno di mirror, è la scelta di lista che pesa di più.</li>
+      </ul>
+    </div>
     <div class="box"><span class="lbl">Sintesi mirror</span>
       <ul>
         <li><b>Secondo</b>: 6 costi a 6, 6 costi a 8, Shanks + Luna a 10. Se Bonney diventa popolare, prepara un turno Perona (+Luna) a 9 o ri-Bonney.</li>
@@ -1278,6 +1353,9 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li><b>Sam (Mihawk + Perona)</b>: attacca in faccia di default. Se girano un corpo, attaccalo; Perona congela i due 6k; non fare starve completo (Gravity Blade e counter-breakpoint ti puniscono); Law/Bepo chiude quando sono bassi. Vai secondo (~60%).</li>
       </ul>
     </div>
+    <div class="quote vs"><span class="who">LawSopp vs HawkRona · Sabo è l'argomento di LawSopp</span>
+      <p>Nel confronto tra le liste, <b>Sabo è l'argomento pratico più forte a favore di LawSopp</b>: Impact lo identifica tra i matchup più difficili e ci costruisce contro apposta — Yasopp sui corpi piccoli, Oden sui pezzi ad alto impatto, Decken conservato per Luffy e Loki, countering attento, chiusura in due turni di Shanks. Sam riconosce che Yasopp migliora il matchup in modo significativo, ma non abbastanza da valere più del vantaggio nel mirror di HawkRona. Sul ruolo della carta sono d'accordo — gira un corpo avversario così puoi contestarlo tenendo il tuo attivo, e impedisce ai value bodies economici di Sabo di snowballare — ma divergono su <b>quanto questo debba decidere la lista intera</b>. Se il tuo campo è pieno di Sabo e di mazzi che crescono sui 2 costi, qui la bilancia pende nettamente verso LawSopp.</p>
+    </div>
   </section>
 
   <!-- ROCKS -->
@@ -1316,6 +1394,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li><a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=5620s">01:33:40</a> Kyo: send a six at it — Rocks' natural counter is almost all 2ks, so you put a 2k in their hand to make your Decken live later; eventually you Shanks and send a six into Kyo, and at that point you also have Luna. They should play John and Kyo in the same turn anyway, so you never get to Decken the John.</li>
       </ul>
     </div>
+    <div class="note"><b>Confronto liste:</b> qui non c'è una scelta da fare — entrambe le scuole sono ottimiste sul matchup. Sam ci arriva dalla forza naturale del board (6+5 che restano in piedi, Rad Beam su Shiki), con Law/Bepo come metodo alternativo per invalidare il loro board; Impact dall'uso pesante di Luna, mettendo in conto lo stallo di Captain John + evento Usopp, gli attack size giusti e il rispetto per Shiki.</div>
   </section>
 
   <!-- KAIDO -->
@@ -1353,6 +1432,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li><a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=6147s">01:42:27</a> Oden on 7 and 9 to stun King is one of your biggest priorities. If they miss King "you also always win"; then Stun Bonney into their 10 leaves them only Lead Performers, "a vanilla that heals someone".</li>
       </ul>
     </div>
+    <div class="note"><b>Confronto liste:</b> su Kaido le due scuole convergono su <b>Shanks + Vander Decken</b> come scambio di tempo che ha ribaltato il matchup (ed è uno dei motivi per cui Kaido è meno attraente contro Mihawk). La sfumatura: Sam ragiona sull'<b>accesso consistente</b> alla risposta — trovare Decken e Oden quando servono; Impact sull'<b>esecuzione on-board</b> — attacca a 7k coi 6k per giocare attorno alla riduzione del leader, DON!! sul leader solo quando prepari il letale, Yasopp che rialza Shanks per attaccare in sicurezza attorno alla 10 Mom.</div>
   </section>
 
   <!-- ROBIN / YELLOW -->
@@ -1401,6 +1481,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li><a class="ts" href="https://www.youtube.com/watch?v=MB2ejUdFAkY&t=6998s">01:56:38</a> La lista gialla di Jelly Beans (9c Bonney, Robin burn): should be fine, you still beat them by Bonney-ing the Mom turn or freezing enough board; "you can still counter the seven that comes afterwards with a Rad Beam".</li>
       </ul>
     </div>
+    <div class="note"><b>Confronto liste:</b> il piano dettagliato di board control qui è quello di Impact/LawSopp — Yasopp toglie i 4k, pressione presto perché Robin non si prenda due turni Big Mom comodi, Shanks + Decken/Luna sui corpi chiave. Dal lato HawkRona il contributo specifico è la <b>Stun Bonney</b>, che spegne il primo turno Big Mom (vs Robin col triple ramp può voler dire giocarla sul tuo 6) e migliora incidentalmente tutti i turni board dei gialli.</div>
   </section>
 
   <!-- ENEL -->
@@ -1417,7 +1498,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
         <li>Getting Enel to 0 is basically game over as Shanks send 5 17 is basically always game since they have no +3-4k Event counters.</li>
       </ul>
     </div>
-    <div class="note">Sam non tratta Enel nel video. Per il punto di vista opposto (Enel vs Mihawk, OP16.5) vedi la <a href="https://github.com/LeoBacca/guida-enel-wasinha">guida Enel Wasinha</a>.</div>
+    <div class="note">Sam non tratta Enel nel video. Il documento comparativo LawSopp vs HawkRona attribuisce comunque al lato HawkRona un piano essenziale — preserva le vite giuste, prepara i turni Shanks, usa i freeze per limitare la conversione del loro board — ma va preso come estrapolazione coerente, non come fonte diretta: il piano operativo resta quello di Impact qui sopra (pulisci gli 1 costi coi corpi economici, spingi una vita a turno col leader, Oden riservato agli Enel grossi, non perdere più di una vita a turno). Per il punto di vista opposto (Enel vs Mihawk, OP16.5) vedi la <a href="https://github.com/LeoBacca/guida-enel-wasinha">guida Enel Wasinha</a>.</div>
   </section>
 
   <!-- ACE LUFFY -->
@@ -1601,7 +1682,75 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
     </table></div>
   </section>
 
-  <div class="next"><button data-go="matchup">← Matchup</button><button data-go="carte">Avanti: Carte →</button></div>
+  <div class="next"><button data-go="matchup">← Matchup</button><button data-go="quiz">Avanti: Che mazzo sei? →</button></div>
+</div>
+
+<!-- ======================= QUIZ "CHE MAZZO SEI?" ======================= -->
+<div class="tab" id="tab-quiz">
+  <div class="hero">
+    <div class="kicker">Dalla «Fast Decision Table» del confronto LawSopp vs HawkRona</div>
+    <h1><span class="g">Che mazzo sei?</span></h1>
+    <div class="sub">Otto domande sul tuo meta e sul tuo modo di giocare. Alla fine il quiz ti dice se sei da <b>HawkRona</b> (Sam · 6c Mihawk + Perona) o da <b>LawSopp</b> (Impact · Law + Yasopp) — o cosa fare se resti in crisi. Ricorda: 47 carte su 51 sono le stesse, stai scegliendo uno slot da 5-6 costi e due tech.</div>
+    <div class="hero-leaders">
+      <img src="carte/ST32-003.png" alt="Dracule Mihawk 6c — HawkRona">
+      <span class="vs">VS</span>
+      <img src="carte/OP13-031.png" alt="Trafalgar Law 6c — LawSopp">
+    </div>
+  </div>
+
+  <section class="block" id="qz">
+    <h2>Il quiz</h2>
+    <div id="qz-list">
+      <div class="qz-q">
+        <h3><span class="qn">1</span> Nel tuo meta locale cosa incontri di più?</h3>
+        <button class="qz-opt" data-w="h">🪞 Mihawk ovunque: il mirror è la partita che decide la giornata</button>
+        <button class="qz-opt" data-w="l">🔴 Tanto Sabo e mazzi che snowballano coi corpi piccoli da 2</button>
+        <button class="qz-opt" data-w="h">🌫️ Campo aperto o incerto: vince chi esegue più pulito</button>
+        <button class="qz-opt" data-w="l">🏰 Board consolidate e mazzi board-centrici da smontare</button>
+      </div>
+      <div class="qz-q">
+        <h3><span class="qn">2</span> Quale sconfitta ti brucia di più?</h3>
+        <button class="qz-opt" data-w="h">😤 La mano storta: il 5-6 costi chiave morto in mano, i brick che non girano</button>
+        <button class="qz-opt" data-w="l">😡 Perdere il board nei primi turni e passare la partita a rincorrere</button>
+      </div>
+      <div class="qz-q">
+        <h3><span class="qn">3</span> Il tuo turno a 5 DON!! ideale?</h3>
+        <button class="qz-opt" data-w="h">🗡️ Un corpo autonomo che migliora la qualità della mano e resta in piedi</button>
+        <button class="qz-opt" data-w="l">🎯 Yasopp: pesca, riposa un loro personaggio e a fine turno si rialza da solo</button>
+      </div>
+      <div class="qz-q">
+        <h3><span class="qn">4</span> I 3 DON!! gratis del leader per te sono…</h3>
+        <button class="qz-opt" data-w="h">🧮 Risorse da pianificare: soglie counter, life mapping, eventi al momento giusto</button>
+        <button class="qz-opt" data-w="l">💥 Danno: 7k ogni turno finché l'avversario non è nel clock a due turni di Shanks</button>
+      </div>
+      <div class="qz-q">
+        <h3><span class="qn">5</span> Nel mirror, sinceramente…</h3>
+        <button class="qz-opt" data-w="h">📉 Arrivo spesso al turno Shanks col life total sbagliato o senza counter: voglio la versione che me lo impedisce</button>
+        <button class="qz-opt" data-w="l">🤝 Me la cavo: preferisco guadagnare punti negli altri matchup</button>
+      </div>
+      <div class="qz-q">
+        <h3><span class="qn">6</span> Andando primo nel mirror preferisci…</h3>
+        <button class="qz-opt" data-w="h">🧊 Stun Bonney sul loro DON!!: gli neghi il turno Shanks e ribalti chi bomba per primo</button>
+        <button class="qz-opt" data-w="l">🏹 Yasopp come attaccante di metà partita che poi protegge e rialza Shanks</button>
+      </div>
+      <div class="qz-q">
+        <h3><span class="qn">7</span> Turni tipo searcher → Samurai → Law → bounce Perona → replay → dig per Shanks:</h3>
+        <button class="qz-opt" data-w="l">🧩 La parte divertente del deck: sono a mio agio col sequencing multi-carta</button>
+        <button class="qz-opt" data-w="h">📐 Troppi pezzi: preferisco linee pulite e decisioni di matematica</button>
+      </div>
+      <div class="qz-q">
+        <h3><span class="qn">8</span> Quale motto ti convince di più?</h3>
+        <button class="qz-opt" data-w="h">«Pescare una carta in più non serve, se il brick ti resta comunque in mano»</button>
+        <button class="qz-opt" data-w="l">«Il volume di pescate trova i pezzi introvabili e non ti fa mai restare senza follow-up»</button>
+      </div>
+    </div>
+    <div class="qz-progress" id="qz-progress">0 / 8 risposte</div>
+    <div id="qz-result" hidden></div>
+    <div class="next" style="justify-content:flex-start"><button id="qz-reset">↺ Ricomincia il quiz</button></div>
+    <div class="note"><b>Da dove viene.</b> Domande e verdetti sono la «Fast Decision Table» e i profili («best player profile», «best metagame profile», «main failure mode») del documento comparativo LawSopp vs HawkRona, riorganizzati in forma di quiz. Non è scienza: è un modo rapido di capire da che parte pendi.</div>
+  </section>
+
+  <div class="next"><button data-go="video">← Video</button><button data-go="carte">Avanti: Carte →</button></div>
 </div>
 
 <!-- ======================= CARTE ======================= -->
@@ -1886,7 +2035,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
 </div>
   </section>
 
-  <div class="next"><button data-go="video">← Video</button><button data-go="home">Torna alla Filosofia ↑</button></div>
+  <div class="next"><button data-go="quiz">← Che mazzo sei?</button><button data-go="home">Torna alla Filosofia ↑</button></div>
 </div>
 
 </main>
@@ -1896,7 +2045,7 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
 
 <script>
 (function(){
-  var tabs=['home','deck','gameplan','matchup','video','carte'];
+  var tabs=['home','deck','gameplan','matchup','video','quiz','carte'];
   var btns=document.querySelectorAll('.tab-btn');
   function show(name,push){
     if(tabs.indexOf(name)<0) name='home';
@@ -1919,6 +2068,55 @@ footer{max-width:1040px;margin:0 auto;padding:20px 14px;color:#6b7f70;font-size:
   var h=(location.hash||'#home').slice(1);
   show(h,false);
   window.addEventListener('hashchange',function(){var n=location.hash.slice(1); if(tabs.indexOf(n)>=0) show(n,false)});
+
+  // ---- quiz "Che mazzo sei?" ----
+  var qzQs=document.querySelectorAll('#qz-list .qz-q');
+  var qzRes=document.getElementById('qz-result');
+  var qzProg=document.getElementById('qz-progress');
+  function qzResult(hh,ll){
+    if(hh-ll>=2){
+      return '<div class="qz-card sam"><span class="who">Il tuo risultato · HawkRona '+hh+' — LawSopp '+ll+'</span>'+
+        '<h3>🟣 Sei da HawkRona — 6c Mihawk + Perona (Sam)</h3>'+
+        '<div class="minicards"><img src="carte/ST32-003.png" alt="Mihawk 6c"><span class="plus">+</span><img src="carte/OP14-033.png" alt="Perona 5c"></div>'+
+        '<p>Vuoi consistenza, ti aspetti tanti mirror e preferisci un piano bombe disciplinato e calcolato. HawkRona alza il <b>floor</b>: il 6 costi funziona da solo, filtra i brick dalla mano, e ti fa arrivare al turno Shanks con vite, counter e board giusti. In più hai la Stun Bonney per riparare il mirror andando primo.</p>'+
+        '<p><b>Occhio a:</b> rinunci a un po’ di board control diretto, soprattutto vs Sabo. E ruba comunque la lezione di Impact: non giocare passivo — converti i DON!! gratis in attacchi da 7k ogni turno e mappa il danno verso il range di Shanks.</p>'+
+        '<p>→ La lista: <a href="#deck">Versione B · Mihawk + Perona</a> · il piano mirror: <a href="#matchup">Matchup → Mirror</a></p></div>';
+    }
+    if(ll-hh>=2){
+      return '<div class="qz-card impact"><span class="who">Il tuo risultato · LawSopp '+ll+' — HawkRona '+hh+'</span>'+
+        '<h3>🔵 Sei da LawSopp — Law + Yasopp (Impact)</h3>'+
+        '<div class="minicards"><img src="carte/OP13-031.png" alt="Trafalgar Law"><span class="plus">+</span><img src="carte/OP17-031.png" alt="Yasopp"></div>'+
+        '<p>Ti piacciono il combattimento sul board, il sequencing tecnico, i loop di Perona con Law e la pressione ogni turno. LawSopp alza il <b>ceiling</b> di tempo: Yasopp controlla i corpi piccoli presto (oro vs Sabo), Law double-developa, e i DON!! gratis diventano 7k in faccia finché l’avversario non è in range del clock a due turni di Shanks.</p>'+
+        '<p><b>Occhio a:</b> puoi pescare il mix sbagliato di setup e brick, restare senza bersagli per Law o incastrarti nel sequencing Samurai/Law. E ruba la lezione di Sam: pescare di più non è migliorare la mano — è la matematica di vite e counter a decidere se Shanks vince davvero.</p>'+
+        '<p>→ La lista: <a href="#deck">Versione A · Law + Yasopp</a> · le curve: <a href="#gameplan">Gameplan</a></p></div>';
+    }
+    return '<div class="qz-card tie"><span class="who">Il tuo risultato · HawkRona '+hh+' — LawSopp '+ll+'</span>'+
+      '<h3>🟡 Sei (ancora) in crisi — e va bene così</h3>'+
+      '<div class="minicards"><img src="carte/ST32-003.png" alt="Mihawk 6c"><span class="or">o</span><img src="carte/OP13-031.png" alt="Law 6c"><span class="plus">+</span><img src="carte/OP17-022.png" alt="Shanks"></div>'+
+      '<p>Per chi non sa cosa aspettarsi dal campo, la Fast Decision Table è netta: <b>parti da HawkRona per l’affidabilità</b>, e applica i fondamentali aggressivi di damage-mapping di Impact (pressione ogni turno, conta il danno, chiudi sul secondo turno a 10 DON!!).</p>'+
+      '<p>La lista “migliore” dipende meno dalla potenza pura e più dal tuo meta locale e dai tuoi punti di forza decisionali: 47 carte sono le stesse, quindi puoi cambiare idea fino alla sera prima del torneo.</p>'+
+      '<p>→ Rileggi <a href="#home">dove concordano e divergono</a> · <a href="#deck">le due liste</a></p></div>';
+  }
+  function qzUpdate(){
+    var hh=0,ll=0,done=0;
+    qzQs.forEach(function(q){var s=q.querySelector('.qz-opt.sel'); if(s){done++; if(s.dataset.w==='h')hh++; else if(s.dataset.w==='l')ll++;}});
+    if(qzProg) qzProg.textContent=done+' / '+qzQs.length+' risposte'+(done<qzQs.length?' — rispondi a tutte per il verdetto':'');
+    if(!qzRes) return;
+    if(done===qzQs.length && qzQs.length>0){ qzRes.hidden=false; qzRes.innerHTML=qzResult(hh,ll); qzRes.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+    else qzRes.hidden=true;
+  }
+  document.querySelectorAll('.qz-opt').forEach(function(b){
+    b.addEventListener('click',function(){
+      b.parentElement.querySelectorAll('.qz-opt').forEach(function(o){o.classList.remove('sel')});
+      b.classList.add('sel'); qzUpdate();
+    });
+  });
+  var qzReset=document.getElementById('qz-reset');
+  if(qzReset) qzReset.addEventListener('click',function(){
+    document.querySelectorAll('.qz-opt.sel').forEach(function(o){o.classList.remove('sel')});
+    qzUpdate(); window.scrollTo({top:0,behavior:'smooth'});
+  });
+  qzUpdate();
 })();
 </script>
 </body>
