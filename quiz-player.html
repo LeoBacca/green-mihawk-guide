@@ -1,0 +1,172 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Che tipo di giocatore sei — Green Mihawk OP17</title>
+<meta name="description" content="Quiz: scopri a quale autore di guide Green Mihawk assomigli di più e quale guida leggere per prima.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗡️</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><div class="wrap topbar">
+<div class="brand"><span class="dot"></span><a href="index.html">Green Mihawk OP17</a></div>
+<nav class="main">
+<a href="index.html">Home</a>
+<a href="quiz-player.html">Quiz stile</a>
+<a href="quiz-deck.html">Quiz lista</a>
+<a href="matchup.html">Matchup</a>
+<a href="mirror.html">Mirror</a>
+<a href="guide/raphterra.html">Raphterra</a>
+<a href="guide/rondino.html">Rondino</a>
+<a href="guide/nebulus.html">NebulusTCG</a>
+<a href="guide/impact.html">Impact</a>
+<a href="guide/samsans.html">samsansOP</a>
+<a href="video.html">Video</a>
+<a href="carte.html">Carte</a>
+</nav></div></header>
+
+<div class="hero"><div class="wrap">
+<span class="badge b-sint">Quiz 1 di 2</span>
+<h1 style="margin-top:12px">Che tipo di <em>giocatore</em> sei?</h1>
+<p class="sub">Otto domande sul tuo modo di ragionare al tavolo. Alla fine scopri a quale dei cinque autori
+assomigli di più — e quindi <b>da quale guida conviene che parti</b>, perché sono scritte in cinque modi molto diversi.</p>
+</div></div>
+
+<section><div class="wrap">
+  <div class="quiz" id="q1">
+    <div class="qbar"><i></i></div>
+    <div class="qstage"></div>
+    <div class="res"></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+<p>Il quiz confronta il tuo stile con quello che ciascun autore dichiara ed esemplifica nella propria guida.
+Nessun profilo è «migliore»: servono a scegliere da dove partire.</p>
+</div></footer>
+
+<script src="assets/app.js"></script>
+<script>
+const CFG = {
+ axes:{raph:'Raphterra', rond:'Rondino', neb:'NebulusTCG', impact:'Impact', sam:'samsansOP'},
+ steps:[
+  {q:'Prima di un torneo importante, cosa ti tranquillizza di più?',
+   hint:'Non quello che pensi sia giusto fare: quello che ti fa sentire davvero pronto.',
+   opts:[
+    {label:'Avere una scheda per ogni matchup', desc:'Mulligan, difficoltà, turn order, carte da rispettare: tutto scritto e ripassabile in due minuti.', score:{raph:3, impact:1}},
+    {label:'Aver capito il perché di ogni scelta', desc:'Se capisco il principio, il caso nuovo lo risolvo da solo al tavolo.', score:{rond:3, sam:1}},
+    {label:'Avere i numeri dalla mia parte', desc:'Percentuali di pesca, win rate per matchup, quante copie servono davvero.', score:{neb:3}},
+    {label:'Aver visto tante partite vere', desc:'Guardare qualcuno che gioca bene mi insegna più di dieci pagine di teoria.', score:{sam:2, impact:2}},
+   ]},
+  {q:'Nel mirror sei indietro sui searcher e lo capisci al turno 3. Che fai?',
+   hint:'È la situazione che Rondino usa come esempio chiave.',
+   opts:[
+    {label:'Cambio subito piano e passo aggro', desc:'Se il gioco di valore non lo vinco, ne cerco un altro — e ci vado fino in fondo.', score:{rond:3}},
+    {label:'Continuo a sviluppare e vedo come va', desc:'Con il mazzo giusto la partita si raddrizza da sola: il core porta.', score:{raph:2, impact:1}},
+    {label:'Conto quante Luna e quanti Shanks mi restano', desc:'Il piano lo decidono i numeri, non la sensazione.', score:{neb:3}},
+    {label:'Guardo la vita e stringo sulla difesa', desc:'La priorità diventa arrivare vivo al loro turno da 10 DON!!.', score:{sam:3}},
+   ]},
+  {q:'Quanto ti piace giocare partite lunghe?',
+   opts:[
+    {label:'Tantissimo: più dura, più vinco', desc:'Logorare le risorse finché l\'avversario non ha più risposte.', score:{rond:3, raph:1}},
+    {label:'Preferisco chiudere in fretta', desc:'Mappo il danno su due-tre turni e vado a prendermeli.', score:{impact:3}},
+    {label:'Dipende dal matchup, cambio volentieri', desc:'In alcuni corro, in altri controllo: decido a inizio partita.', score:{neb:2, sam:2}},
+    {label:'Lunghe sì, ma con la board pulita', desc:'Prima tolgo tutto dal campo, poi penso a chiudere.', score:{raph:3}},
+   ]},
+  {q:'Un compagno ti chiede «con quanta potenza attacco qui?». Come rispondi?',
+   opts:[
+    {label:'7000. E ti spiego i casi da 8, 9 e 10', desc:'I numeri di attacco sono tabellari, li so a memoria.', score:{impact:3}},
+    {label:'Dipende da quante carte vuoi estrargli', desc:'L\'attacco è uno strumento: a volte serve il danno, a volte il counter.', score:{raph:2, rond:2}},
+    {label:'Fammi contare gli swing che ti restano', desc:'Prima calcolo il letale potenziale, poi decido.', score:{neb:3}},
+    {label:'Dipende da quanta vita puoi permetterti di lasciargli', desc:'Ragiono al contrario: da dove devo arrivare, non da dove sono.', score:{sam:3}},
+   ]},
+  {q:'Contro i mazzi gialli (Robin, Linlin, Boa, Pudding) come ti senti?',
+   hint:'Sono i matchup in cui le guide divergono di più.',
+   opts:[
+    {label:'A mio agio: so esattamente cosa cercare', desc:'Hard mulligan per Yasopp e via, il piano è chiaro.', score:{neb:3}},
+    {label:'Mi innervosiscono i trigger', desc:'Odio perdere per una vita girata bene.', score:{sam:2, impact:1}},
+    {label:'Li tratto come tutti gli altri', desc:'Controllo la board e arrivo al turno di Shanks.', score:{raph:2, rond:1}},
+    {label:'Dipende tutto dal dado', desc:'Primo o secondo cambia completamente la partita.', score:{rond:2, neb:1}},
+   ]},
+  {q:'Quale di queste frasi ti somiglia di più?',
+   opts:[
+    {label:'«Se sono avanti, mi chiedo come posso ancora perdere»', desc:'', score:{rond:3}},
+    {label:'«Se ci sono corpi riposati da colpire, li colpisco»', desc:'', score:{raph:3}},
+    {label:'«Il mazzo è rotto, lo gioco finché non lo bannano»', desc:'', score:{impact:3}},
+    {label:'«Fammi ricontrollare la formula del letale»', desc:'', score:{neb:3}},
+   ]},
+  {q:'Cosa ti fa perdere più spesso?',
+   opts:[
+    {label:'Sbaglio il momento in cui cambiare piano', desc:'Continuo a giocare la partita che stavo giocando.', score:{rond:3}},
+    {label:'Mi dimentico un dettaglio del matchup', desc:'Una carta che dovevo rispettare e non ho rispettato.', score:{raph:3}},
+    {label:'Vado troppo basso di vita', desc:'Arrivo al loro turno bomba senza cuscinetto.', score:{sam:3}},
+    {label:'Non trovo i pezzi in tempo', desc:'Cerco, cerco, e la combo non si compone.', score:{neb:2, impact:1}},
+   ]},
+  {q:'Come preferisci che sia scritta una guida?',
+   opts:[
+    {label:'Esaustiva, con una regola per ogni situazione', desc:'Anche se è lunga: voglio trovarci dentro tutto.', score:{raph:3}},
+    {label:'Ragionata, con pochi principi solidi', desc:'Preferisco capire il criterio che memorizzare i casi.', score:{rond:3}},
+    {label:'Asciutta e operativa', desc:'Dimmi cosa fare, i numeri, e andiamo.', score:{impact:3}},
+    {label:'Piena di dati e liste di priorità', desc:'Voti, percentuali, ordini di ricerca.', score:{neb:3}},
+   ]},
+ ],
+ results:{
+  raph:{eyebrow:'Il tuo profilo', title:'L\'Enciclopedista', tagline:'Come Raphterra: vuoi una risposta per ogni situazione, e la vuoi scritta.',
+   html:`<div class="card"><h3>Perché sei così</h3>
+    <p>Ti fidi della preparazione più che dell'improvvisazione. Ti trovi bene con regole che hanno un nome —
+    «The 3-Card Rule», «The 3-Attacker Cap», «Always Kill Yasopp» — perché al tavolo le richiami in un secondo.
+    Il tuo default è il controllo board: «it's usually safer to whittle down the opponent's resources before trying to end the game».</p></div>
+   <div class="card" style="margin-top:12px"><h3>Da dove partire</h3>
+    <p>Leggi <a href="guide/raphterra.html">la guida di Raphterra</a> dall'inizio, capitolo per capitolo: è costruita esattamente
+    per come ragioni. Le sue cheat sheet per matchup sono la cosa più vicina a un bigino da torneo che troverai.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Il tuo punto debole</h3>
+    <p>Rischi di applicare la regola anche quando la situazione chiede di romperla. L'antidoto è
+    <a href="guide/rondino.html">Rondino</a>: il suo esempio sul Decken («do I actually need this Shanks gone?»)
+    è scritto apposta per chi come te ha interiorizzato le regole troppo bene.</p></div>`},
+  rond:{eyebrow:'Il tuo profilo', title:'Il Lettore di Partita', tagline:'Come Rondino: non ti interessa la mossa giusta, ti interessa capire che partita stai giocando.',
+   html:`<div class="card"><h3>Perché sei così</h3>
+    <p>Per te le carte non hanno un valore fisso: «their value depends on the game you're trying to play».
+    Sei il tipo che al turno 3 ha già deciso se questa è una partita di valore o una corsa — e che quando cambia idea,
+    ci si butta davvero invece di restare a metà.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Da dove partire</h3>
+    <p><a href="guide/rondino.html">La guida di Rondino</a>, e in particolare la matchups bible: è l'unica costruita
+    su principi invece che su script. Poi vai dritto alla <a href="mirror.html">sezione mirror</a>, dove il suo schema
+    value/aggro è riportato per intero.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Il tuo punto debole</h3>
+    <p>I dettagli tabellari. Sapere «dipende» non basta quando devi decidere se attaccare per 7 o per 8.
+    Prenditi i numeri da <a href="guide/impact.html">Impact</a> e le probabilità da
+    <a href="guide/nebulus.html">NebulusTCG</a>: sono il complemento esatto del tuo modo di pensare.</p></div>`},
+  neb:{eyebrow:'Il tuo profilo', title:'Il Contabile', tagline:'Come NebulusTCG: se non si può contare, non ti convince.',
+   html:`<div class="card"><h3>Perché sei così</h3>
+    <p>Vuoi sapere quante carte devi vedere per l'80% di probabilità, quante Luna ti servono per il letale garantito,
+    e qual è il win rate del matchup andando primo <i>e</i> andando secondo. Non ti accontenti di «è favorevole».</p></div>
+   <div class="card" style="margin-top:12px"><h3>Da dove partire</h3>
+    <p><a href="guide/nebulus.html">La guida di NebulusTCG</a>: il capitolo sulla filosofia del DON!! e le probabilità di pesca,
+    il Rapidfire MU Spread, e soprattutto le guide ai mazzi gialli — dove trovi anche la formula del letale contro Linlin.
+    Sui gialli è la fonte migliore che c'è.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Il tuo punto debole</h3>
+    <p>I numeri descrivono la partita media, non quella che stai giocando. Quando il piano salta, serve la flessibilità
+    di <a href="guide/rondino.html">Rondino</a> — che infatti è l'unico a dire esplicitamente quando <i>non</i> seguire la regola del matchup.</p></div>`},
+  impact:{eyebrow:'Il tuo profilo', title:'Il Pragmatico', tagline:'Come Impact: il mazzo è forte, i numeri li sai, andiamo a vincere.',
+   html:`<div class="card"><h3>Perché sei così</h3>
+    <p>Odi perdere tempo. Vuoi sapere con quanta potenza attaccare e in che ordine giocare le carte, e il resto lo risolvi al tavolo.
+    Il tuo mirror è «about damage»: mappare il danno su più turni, non estrarre carte all'infinito.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Da dove partire</h3>
+    <p><a href="guide/impact.html">La guida di Impact</a>: è la più asciutta delle cinque, con i numeri di attacco già tabellati
+    (7000 / 8000 / 9000 / 10000 e quando usarli). Poi la <a href="video.html">video-lezione</a> da due ore, che è la stessa cosa ma parlata.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Il tuo punto debole</h3>
+    <p>I matchup in cui la corsa è una trappola. Contro <b>Red Ace</b> e <b>RB Sabo</b> leggiti la linea di starving di
+    <a href="matchup.html">Rondino</a> prima di lanciarti: «Don't even start the race» è scritto esattamente per il tuo istinto.</p></div>`},
+  sam:{eyebrow:'Il tuo profilo', title:'L\'Esploratore', tagline:'Come samsansOP: ti interessa capire come sta cambiando il formato, non solo come si gioca oggi.',
+   html:`<div class="card"><h3>Perché sei così</h3>
+    <p>Sei quello che nota il problema strutturale prima degli altri — tipo il fatto che in OP17 chi va primo nel mirror
+    ha una difficoltà intrinseca, e che quindi la gestione della vita è cambiata rispetto a OP16.5.
+    Ti piace provare le tech che nessuno gioca ancora.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Da dove partire</h3>
+    <p><a href="guide/samsans.html">Il deep dive di samsansOP</a>, e la <a href="mirror.html">sezione mirror</a>,
+    dove il suo «New Mirror Problem» e la regola delle due vite sono messi a confronto con le altre fonti.</p></div>
+   <div class="card" style="margin-top:12px"><h3>Il tuo punto debole</h3>
+    <p>Le basi date per scontate. Ogni tanto conviene tornare su <a href="guide/raphterra.html">Raphterra</a>
+    per ricontrollare i fondamentali del mid game: è la guida che copre in modo sistematico quello che tu tendi a saltare.</p></div>`},
+ }
+};
+runQuiz(CFG, '#q1');
+</script>
+</body></html>

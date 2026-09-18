@@ -1,0 +1,174 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Matchup — tutte le guide a confronto</title>
+<meta name="description" content="Aggregatore dei matchup di Green Mihawk OP17: cosa dice ogni guida, dove concordano e dove si contraddicono.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗡️</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><div class="wrap topbar">
+<div class="brand"><span class="dot"></span><a href="index.html">Green Mihawk OP17</a></div>
+<nav class="main">
+<a href="index.html">Home</a>
+<a href="quiz-player.html">Quiz stile</a>
+<a href="quiz-deck.html">Quiz lista</a>
+<a href="matchup.html">Matchup</a>
+<a href="mirror.html">Mirror</a>
+<a href="guide/raphterra.html">Raphterra</a>
+<a href="guide/rondino.html">Rondino</a>
+<a href="guide/nebulus.html">NebulusTCG</a>
+<a href="guide/impact.html">Impact</a>
+<a href="guide/samsans.html">samsansOP</a>
+<a href="video.html">Video</a>
+<a href="carte.html">Carte</a>
+</nav></div></header>
+
+<div class="hero"><div class="wrap">
+<span class="badge b-sint">Aggregatore</span>
+<h1 style="margin-top:12px">Tutti i <em>matchup</em>, tutte le guide</h1>
+<p class="sub">Per ogni leader: il verdetto di ciascuna fonte, i punti su cui vanno tutti d'accordo e — soprattutto —
+i punti su cui si contraddicono. Perché è lì che devi decidere tu.</p>
+<div class="kpi" style="max-width:640px">
+  <div><b id="kMu">—</b><span>matchup schedati</span></div>
+  <div><b id="kSrc">5</b><span>guide incrociate</span></div>
+  <div><b id="kConf">—</b><span>disaccordi aperti</span></div>
+</div>
+</div></div>
+
+<section><div class="wrap">
+  <h2 class="sec"><span class="n">01</span>Come leggere questa pagina</h2>
+  <p class="lede">Tre regole che ho seguito nel montare i confronti, e che conviene tenere a mente.</p>
+  <div class="grid g3">
+    <div class="card"><h3>🟣 Sui gialli pesa NebulusTCG</h3>
+      <p>Le sue analisi dei mazzi gialli (Robin, Linlin, Boa, Pudding) sono le più strutturate: rating separato
+      per primo/secondo, mulligan dichiarato e piano di gioco spiegato. Dove diverge dagli altri sui gialli,
+      è segnalato con un bollino.</p></div>
+    <div class="card"><h3>🔵 Lo starve di Rondino è prioritario</h3>
+      <p>Contro <b>Black Luffy</b>, <b>Red Ace</b> e <b>RB Sabo</b> la linea di affamamento di Rondino è riportata
+      per intera e in evidenza: è la parte più originale delle cinque guide. Dove qualcuno la contraddice,
+      trovi entrambe le versioni.</p></div>
+    <div class="card"><h3>⚠️ I buchi restano buchi</h3>
+      <p>Dove una fonte non copre un matchup — o dove la cattura della guida si interrompe — è scritto
+      esplicitamente. Nessun verdetto è stato inventato per riempire una casella.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2 class="sec"><span class="n">02</span>Il quadro d'insieme</h2>
+  <p class="lede">Le due fonti che danno un voto sistematico a tutto il campo, affiancate.</p>
+  <div class="grid g2">
+    <div class="card">
+      <span class="badge b-raph">Raphterra</span>
+      <h3 style="margin-top:10px">Tier list della guida</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px">
+        <tr><td style="padding:6px 0;color:#4ade80;font-weight:700;width:130px">Favored</td><td>Kaido</td></tr>
+        <tr><td style="padding:6px 0;color:#86efac;font-weight:700">Slightly Favored</td><td>Nico Robin · Enel · Luffy &amp; Ace · Rocks.D.Xebec · Boa Hancock</td></tr>
+        <tr><td style="padding:6px 0;color:var(--gold);font-weight:700">Even</td><td>Dracule Mihawk · Sabo · Monkey.D.Luffy</td></tr>
+        <tr><td style="padding:6px 0;color:#fca5a5;font-weight:700">Slightly Unfavored</td><td>Portgas.D.Ace</td></tr>
+        <tr><td style="padding:6px 0;color:#f87171;font-weight:700">Unfavored</td><td style="color:var(--dim2)">— nessuno</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <span class="badge b-neb">NebulusTCG</span>
+      <h3 style="margin-top:10px">Rapidfire MU Spread per il 9/1</h3>
+      <p style="font-size:.85rem;margin-bottom:10px">Voto separato per chi va primo e chi va secondo, più il mulligan.</p>
+      <div class="tscroll"><table style="width:100%;border-collapse:collapse;font-size:.82rem">
+        <thead><tr style="color:var(--gold)"><th style="text-align:left;padding:4px">MU</th><th style="text-align:left">1°</th><th style="text-align:left">2°</th></tr></thead>
+        <tbody id="nebTable"></tbody>
+      </table></div>
+      <p style="font-size:.78rem;color:var(--dim2);margin-top:10px">Da testare / in perdita: UP Luffy, BLuffy, Hand Rip P Enel.
+      «Dovrebbero essere gratis» ma non testati: Shanks, UG Zonji, PY Rosi, B Imu, RG Luffy.</p>
+    </div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2 class="sec"><span class="n">03</span>Scheda per leader</h2>
+  <p class="lede">Clicca un leader per aprire la scheda completa.</p>
+  <input class="searchbox" placeholder="Filtra per leader, colore o parola chiave…  (es. starve, yasopp, giallo)" data-searchfor=".mu-item">
+  <div id="muList"></div>
+  <h3 style="margin-top:34px;font-size:1.05rem">Matchup nominati ma senza scheda</h3>
+  <div id="muOpen" class="grid g2" style="margin-top:12px"></div>
+</div></section>
+
+<footer><div class="wrap">
+<p><b>Green Mihawk OP17 — hub delle guide.</b> Le citazioni tra virgolette sono verbatim dalle guide originali.
+Le sintesi, i confronti e le note di conflitto sono mie.</p>
+<p>Immagini carte © Bandai / Shueisha. Le guide Metafy appartengono ai rispettivi autori.</p>
+</div></footer>
+
+<script src="assets/app.js"></script>
+<script src="data/matchup.js"></script>
+<script>
+const VLBL = {fav:['v-fav','Favorevole'], even:['v-even','Pari'], unf:['v-unf','Sfavorevole'], na:['v-even','N/D']};
+const NEB_ROWS = [
+  ['RB Elbaph Sabo','Unfavored','50-50'], ['U Rocks','Very Favored','Very Favored'],
+  ['P Kaido','Very Favored','Very Favored'], ['PY Robin','Favored','Very Favored'],
+  ['R Ace','Unfavored','Slightly Favored'], ['Y Linlin','Favored','Very Favored'],
+  ['ST30 Luffy &amp; Ace','Slightly Favored','Favored'], ['P Enel','Slightly Favored','Even'],
+  ['PY Pudding','Very Favored','Very Favored'], ['UY Boa','Favored','Favored*'],
+];
+function tone(t){
+  if(/Very Favored/.test(t)) return '#4ade80';
+  if(/Favored/.test(t)) return '#86efac';
+  if(/Even|50-50/.test(t)) return 'var(--gold)';
+  return '#f87171';
+}
+document.getElementById('nebTable').innerHTML = NEB_ROWS.map(r=>
+  `<tr style="border-top:1px solid var(--line)">
+     <td style="padding:5px 4px">${r[0]}</td>
+     <td style="color:${tone(r[1])}">${r[1]}</td>
+     <td style="color:${tone(r[2])}">${r[2]}</td></tr>`).join('');
+
+function srcLine(v){
+  const f = FONTI[v.f];
+  return `<div class="srcline">
+    <a href="${f.link}" class="badge ${f.badge}" style="text-decoration:none;align-self:start">${f.nome}</a>
+    <div>${v.txt}</div></div>`;
+}
+
+document.getElementById('muList').innerHTML = MATCHUP.map(m=>{
+  const [vc,vl] = VLBL[m.tier] || VLBL.even;
+  const flags = (m.nautilus?'<span class="pill" style="border-color:var(--neb);color:var(--neb)">🟣 peso a NebulusTCG</span>':'')
+              + (m.starve?'<span class="pill" style="border-color:var(--rond);color:var(--rond)">🔵 linea starve</span>':'')
+              + (m.troncato?'<span class="pill" style="border-color:var(--red);color:#f87171">⚠️ fonte troncata</span>':'');
+  const carte = (m.carte||[]).map(c=>`<div class="cardbox" style="width:88px"><img src="carte/${c}.png" alt="" loading="lazy"><span>${c}</span></div>`).join('');
+  const boxes = (m.boxes||[]).map(b=>`<div class="note"><b style="display:block;margin-bottom:4px">${b.t}</b>${b.txt}</div>`).join('');
+  return `<details class="acc mu-item">
+    <summary>
+      <img src="carte/${m.carta}.png" alt="" style="width:34px;border-radius:4px" loading="lazy">
+      <span>${m.nome}<br><span style="font-weight:400;color:var(--dim2);font-size:.8rem">${m.colore}</span></span>
+      <span class="verdict ${vc}" style="margin-left:auto">${vl}</span>
+    </summary>
+    <div class="acc-body">
+      <p style="margin-top:0">${m.sintesi}</p>
+      <div style="margin-bottom:14px">${flags}</div>
+      ${m.troncato?`<div class="note trunc">⚠️ ${m.troncato}</div>`:''}
+
+      <h4 style="color:var(--gold);margin:18px 0 6px">Cosa dice ogni fonte</h4>
+      ${m.verdetti.map(srcLine).join('')}
+
+      ${m.starveBox?`<div class="consensus" style="border-color:var(--rond);background:rgba(56,189,248,.07);margin-top:18px">
+        <b style="color:var(--rond)">🔵 ${m.starveBox.titolo}</b>${m.starveBox.txt}</div>`:''}
+
+      ${m.accordo.length?`<div class="consensus" style="margin-top:18px"><b>Dove vanno d'accordo</b>
+        <ul style="margin:0;padding-left:18px">${m.accordo.map(a=>`<li style="margin:5px 0">${a}</li>`).join('')}</ul></div>`:''}
+
+      ${m.conflitti.map(c=>`<div class="conflict"><b>⚔️ ${c.t}</b>
+        ${c.pos.map(p=>`<div style="margin:7px 0"><span class="badge ${FONTI[p.f].badge}">${FONTI[p.f].nome}</span> ${p.txt}</div>`).join('')}
+        ${c.nota?`<div style="margin-top:9px;padding-top:9px;border-top:1px solid var(--line);font-size:.87rem;color:var(--dim)">💡 ${c.nota}</div>`:''}
+      </div>`).join('')}
+
+      ${boxes}
+      ${m.extra||''}
+      ${carte?`<h4 style="color:var(--gold);margin:20px 0 6px">Carte che contano</h4><div class="cardrow">${carte}</div>`:''}
+    </div>
+  </details>`;
+}).join('');
+
+document.getElementById('muOpen').innerHTML = MATCHUP_APERTI.map(o=>
+  `<div class="card"><h3>${o.nome}</h3><p>${o.nota}</p></div>`).join('');
+
+document.getElementById('kMu').textContent = MATCHUP.length;
+document.getElementById('kConf').textContent = MATCHUP.reduce((n,m)=>n+m.conflitti.length,0);
+</script>
+</body></html>

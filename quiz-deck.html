@@ -1,0 +1,271 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Come buildare il tuo Mihawk — Green Mihawk OP17</title>
+<meta name="description" content="Quiz: dieci domande su cosa soffri e cosa ti aspetti di incontrare, e ti dico quale lista Green Mihawk fa per te e come giocarla.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗡️</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><div class="wrap topbar">
+<div class="brand"><span class="dot"></span><a href="index.html">Green Mihawk OP17</a></div>
+<nav class="main">
+<a href="index.html">Home</a>
+<a href="quiz-player.html">Quiz stile</a>
+<a href="quiz-deck.html">Quiz lista</a>
+<a href="matchup.html">Matchup</a>
+<a href="mirror.html">Mirror</a>
+<a href="guide/raphterra.html">Raphterra</a>
+<a href="guide/rondino.html">Rondino</a>
+<a href="guide/nebulus.html">NebulusTCG</a>
+<a href="guide/impact.html">Impact</a>
+<a href="guide/samsans.html">samsansOP</a>
+<a href="video.html">Video</a>
+<a href="carte.html">Carte</a>
+</nav></div></header>
+
+<div class="hero"><div class="wrap">
+<span class="badge b-sint">Quiz 2 di 2</span>
+<h1 style="margin-top:12px">Capisci come <em>buildare</em> il tuo mazzo</h1>
+<p class="sub">La lista perfetta non esiste. Esiste la lista giusta <b>per quello che soffri tu</b> e per quello che
+pensi di incontrare al tuo evento. Dieci domande, e alla fine ti dico da quale delle sette liste reali
+di queste guide partire, cosa cambiare e — soprattutto — <b>come va giocata</b>.</p>
+</div></div>
+
+<section><div class="wrap">
+  <div class="quiz" id="q2">
+    <div class="qbar"><i></i></div>
+    <div class="qstage"></div>
+    <div class="res"></div>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+<p>Tutte le liste proposte sono liste reali prese dalle guide: quattro sample build di Raphterra,
+le due versioni di Rondino e quella di NebulusTCG. I conteggi sono quelli delle fonti.</p>
+</div></footer>
+
+<script src="assets/app.js"></script>
+<script>
+/* --- liste reali dalle guide, per il blocco risultato --- */
+const LISTE = {
+ std:{fonte:'Raphterra · Deck 1', img:'img/guide/raph-deck1-standard-law.png',
+  carte:[['OP07-022','Otama',4],['OP12-034','Perona 1c',4],['ST32-001','Kin\'emon',4],['OP06-033','Vander Decken IX',4],
+         ['OP12-023','Kawamatsu',4],['OP17-031','Yasopp',4],['ST32-002','Kouzuki Oden',4],['OP13-031','Trafalgar Law 6c',4],
+         ['OP17-022','Shanks 10c',4],['OP01-055','You Can Be My Samurai!!',4],['OP06-038','Billion-fold',4],
+         ['OP08-036','Electrical Luna',3],['OP14-039','Coffin Boat',3]]},
+ hybrid:{fonte:'Raphterra · Deck 3 (la sua preferita)', img:'img/guide/raph-deck3-hybrid.png',
+  carte:[['OP07-022','Otama',4],['OP12-034','Perona 1c',4],['ST32-001','Kin\'emon',4],['OP06-033','Vander Decken IX',3],
+         ['OP12-023','Kawamatsu',4],['OP17-031','Yasopp',3],['ST32-002','Kouzuki Oden',4],['OP14-033','Perona 5c',3],
+         ['OP13-031','Trafalgar Law 6c',3],['ST32-003','Dracule Mihawk 6c',2],['OP17-022','Shanks 10c',4],
+         ['ST24-004','Law & Bepo',1],['OP01-055','You Can Be My Samurai!!',3],['OP06-038','Billion-fold',4],
+         ['OP08-036','Electrical Luna',2],['OP14-039','Coffin Boat',2]]},
+ trash:{fonte:'Raphterra · Deck 4 (Trash build)', img:'img/guide/raph-deck4-trash.png',
+  carte:[['OP07-022','Otama',2],['OP12-034','Perona 1c',4],['ST32-001','Kin\'emon',4],['OP14-023','Kikunojo',2],
+         ['OP06-033','Vander Decken IX',3],['OP12-023','Kawamatsu',4],['OP17-031','Yasopp',4],['ST32-002','Kouzuki Oden',4],
+         ['OP13-031','Trafalgar Law 6c',4],['OP17-022','Shanks 10c',4],['OP01-055','You Can Be My Samurai!!',2],
+         ['OP06-038','Billion-fold',3],['OP14-038','Trash Event',4],['OP08-036','Electrical Luna',2],['OP14-039','Coffin Boat',4]]},
+ starve:{fonte:'Rondino · lista aggiornata', img:'img/guide/rond-decklist-update.png',
+  carte:[['OP07-022','Otama',4],['OP12-034','Perona 1c',4],['ST32-001','Kin\'emon',4],['OP06-033','Vander Decken IX',4],
+         ['OP12-023','Kawamatsu',4],['OP17-031','Yasopp',4],['ST32-002','Kouzuki Oden',4],['OP13-031','Trafalgar Law 6c',4],
+         ['OP17-022','Shanks 10c',4],['OP01-055','You Can Be My Samurai!!',4],['OP06-038','Billion-fold',3],
+         ['OP14-038','Trash Event',3],['OP08-036','Electrical Luna',2],['OP14-039','Coffin Boat',2]]},
+ draw:{fonte:'NebulusTCG', img:'img/guide/nebulus-decklist.png',
+  carte:[['OP07-022','Otama',4],['OP12-034','Perona 1c',4],['ST32-001','Kin\'emon',4],['OP06-033','Vander Decken IX',4],
+         ['OP12-023','Kawamatsu',4],['OP17-031','Yasopp',4],['ST32-002','Kouzuki Oden',4],['OP13-031','Trafalgar Law 6c',4],
+         ['OP17-022','Shanks 10c',4],['OP01-055','You Can Be My Samurai!!',4],['OP06-038','Billion-fold',3],
+         ['OP08-036','Electrical Luna',3],['OP14-039','Coffin Boat',4]]},
+};
+function lista(k){
+  const L = LISTE[k];
+  const tot = L.carte.reduce((n,c)=>n+c[2],0);
+  return `<div class="card" style="margin-top:12px"><h3>La lista di partenza — ${L.fonte}
+   <span style="float:right;color:var(--dim2);font-weight:400;font-size:.85rem">${tot} carte + leader</span></h3>
+   <div class="cardrow" style="margin-top:12px">
+     <div class="cardbox" style="width:96px"><img src="carte/OP14-020.png" alt=""><span>Leader</span></div>
+     ${L.carte.map(c=>`<div class="cardbox" style="width:96px">
+        <img src="carte/${c[0]}.png" alt="" loading="lazy">
+        <span><b style="color:var(--green);font-size:1.05em">${c[2]}×</b> ${c[1]}</span></div>`).join('')}
+   </div>
+   <figure style="margin-top:14px"><img src="${L.img}" alt="Decklist ${L.fonte}">
+     <figcaption>La lista come appare nella guida originale.</figcaption></figure>
+  </div>`;
+}
+
+const CFG = {
+ axes:{std:'Standard 6c Law', hybrid:'Ibrida Law+Mihawk', trash:'Trash build', starve:'Starve (Rondino)', draw:'Motore di pesca'},
+ steps:[
+  {q:'Che campo ti aspetti al tuo prossimo evento?',
+   hint:'Non il meta globale: quello che vedi davvero nella tua zona o nel tuo online.',
+   opts:[
+    {label:'Tantissimo mirror', desc:'Metà delle partite contro un altro Green Mihawk.', score:{hybrid:3, std:2}},
+    {label:'Tanti mazzi gialli', desc:'Robin, Linlin, Boa, Pudding.', score:{draw:3, std:1}},
+    {label:'Tanto Elbaph aggro', desc:'Black Luffy e RB Sabo che riempiono il campo di corpi.', score:{trash:3, starve:2}},
+    {label:'Un po\' di tutto', desc:'Campo aperto, nessun archetipo dominante.', score:{std:3, draw:1}},
+   ]},
+  {q:'Qual è il modo in cui perdi più spesso?',
+   hint:'La domanda più importante del quiz: la lista si costruisce da qui.',
+   opts:[
+    {label:'Mi bricco: mano piena di carte morte', desc:'Non trovo i searcher, o li trovo e non trovo altro.', score:{draw:3, trash:1}},
+    {label:'Mi puliscono i searcher e salto il Law', desc:'Le loro weenie ammazzano le mie e il turno da 6 salta.', score:{hybrid:3}},
+    {label:'Non arrivo vivo al turno di Shanks', desc:'Mi spengono prima, o arrivo senza risorse.', score:{starve:3}},
+    {label:'Arrivo a Shanks ma non chiudo', desc:'Controllo bene e poi la partita non finisce mai.', score:{std:2, trash:2}},
+   ]},
+  {q:'Vinci il tiro del dado. La tua reazione istintiva?',
+   opts:[
+    {label:'Secondo, sempre', desc:'È quello che dicono praticamente tutte le guide su quasi tutti i matchup.', score:{std:2, starve:2, hybrid:1}},
+    {label:'Dipende dal matchup, ci penso', desc:'Contro Kaido, Enel e Pudding vado primo.', score:{draw:3}},
+    {label:'Secondo, ma poi soffro contro l\'aggro', desc:'Vorrei più strumenti per non essere travolto.', score:{trash:3}},
+    {label:'Non ho una regola chiara', desc:'Decido sul momento.', score:{std:2}},
+   ]},
+  {q:'6c Law o 6c Mihawk?',
+   hint:'È la scelta di deckbuilding su cui Raphterra dedica più spazio.',
+   opts:[
+    {label:'Law: voglio il blocker e il rimbalzo', desc:'Il valore ricorrente mi serve più della statline.', score:{std:3, starve:2, draw:2}},
+    {label:'Entrambi, ibrido', desc:'Così se mi puliscono le weenie non resto senza turno da 6.', score:{hybrid:3}},
+    {label:'Non ho ancora capito la differenza', desc:'Mi serve una lista che funzioni senza scelte difficili.', score:{std:2, draw:1}},
+    {label:'Mihawk: voglio il corpo più grosso', desc:'Preferisco minacciare sul campo.', score:{hybrid:2}},
+   ]},
+  {q:'Quante Electrical Luna vuoi in lista?',
+   opts:[
+    {label:'Il massimo possibile', desc:'Nel mirror le partite si vincono contando le Luna.', score:{std:2, draw:3}},
+    {label:'Due bastano, preferisco altri slot', desc:'Ne uso una o due a partita e non di più.', score:{hybrid:2, starve:2, trash:2}},
+    {label:'Tre: via di mezzo', desc:'', score:{std:3, draw:2}},
+    {label:'Dipende da quanto mirror mi aspetto', desc:'', score:{hybrid:2, std:1}},
+   ]},
+  {q:'Le partite lunghe: piacere o sofferenza?',
+   opts:[
+    {label:'Piacere puro: voglio logorarli', desc:'Più carte scambiamo, più vinco.', score:{starve:3, std:1}},
+    {label:'Le reggo ma preferisco chiudere prima', desc:'', score:{trash:2, hybrid:2}},
+    {label:'Mi perdo nei turni lunghi', desc:'Dopo un po\' sbaglio i conti.', score:{draw:2, std:2}},
+    {label:'Dipende: nel mirror sì, contro l\'aggro no', desc:'', score:{hybrid:2, starve:1}},
+   ]},
+  {q:'Ti trovi bene a contare i letali più turni in anticipo?',
+   opts:[
+    {label:'Sì, li calcolo sempre', desc:'So esattamente quanti swing mi mancano.', score:{draw:3, starve:2}},
+    {label:'Abbastanza, ma non oltre il turno dopo', desc:'', score:{std:2, hybrid:1}},
+    {label:'No, vado a sensazione', desc:'Preferisco una lista che perdoni gli errori di conto.', score:{std:3, trash:1}},
+    {label:'Ci sto lavorando', desc:'', score:{std:1, draw:1}},
+   ]},
+  {q:'Ti dà fastidio tenere in mano carte situazionali?',
+   hint:'Cioè le tech che in metà dei matchup sono carta morta.',
+   opts:[
+    {label:'Molto: voglio carte sempre giocabili', desc:'', score:{std:3, draw:2}},
+    {label:'No, se vincono i matchup brutti', desc:'Accetto la carta morta pur di avere la risposta.', score:{trash:3, hybrid:2}},
+    {label:'Solo se sono eventi da 1 costo', desc:'Poco costo, poco impegno.', score:{trash:2, starve:2}},
+    {label:'Dipende da quante ne metto', desc:'Una o due sì, quattro no.', score:{hybrid:2, std:1}},
+   ]},
+  {q:'Quando sei avanti, cosa ti succede?',
+   opts:[
+    {label:'Divento avido e me la faccio rimontare', desc:'Voglio sempre un po\' più di valore.', score:{starve:3}},
+    {label:'Chiudo bene, quello lo so fare', desc:'', score:{trash:2, hybrid:1}},
+    {label:'Non so mai quando smettere di controllare', desc:'', score:{std:2, starve:1}},
+    {label:'Raramente sono avanti', desc:'Di solito rincorro.', score:{draw:2, trash:1}},
+   ]},
+  {q:'Un\'ultima: quanto ti fidi delle tue ricerche?',
+   hint:'Ordine dei searcher, cosa cercare, quando usare la Samurai.',
+   opts:[
+    {label:'Ho un ordine preciso e lo seguo', desc:'', score:{draw:3, std:1}},
+    {label:'Cerco quello che mi serve sul momento', desc:'', score:{starve:2, hybrid:2}},
+    {label:'Spesso cerco la carta sbagliata', desc:'Poi me ne accorgo due turni dopo.', score:{draw:2, std:2}},
+    {label:'Finisco spesso senza bersagli da cercare', desc:'Il mazzo mi si svuota di risposte.', score:{trash:2, draw:1}},
+   ]},
+ ],
+ results:{
+  std:{eyebrow:'La lista che fa per te', title:'Standard 6c Law', tagline:'La lista più pulita e più facile da pilotare bene: nessuna scelta difficile, il core porta la partita.',
+   html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
+     Hai detto che vuoi carte sempre giocabili e un campo aperto. Questa è la build che Raphterra chiama il caso base:
+     quattro copie di tutto il core, zero slot situazionali. «The Core Carries».</div>
+    ${lista('std')}
+    <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
+     <ul style="color:var(--dim);padding-left:18px">
+      <li>Default: <b>controllo board</b>. Se ci sono corpi da 6k riposati, attaccali.</li>
+      <li>Vai secondo quasi sempre. Eccezioni: Kaido, Enel, Pudding.</li>
+      <li>Mid game: 6C Law + corpo, e infila le You Can Be My Samurai quando il DON!! avanza.</li>
+      <li>Conserva sempre <b>Decken + una carta Fishman</b> per il loro 10C Shanks.</li>
+     </ul></div>
+    <div class="card" style="margin-top:12px"><h3>I tuoi slot flessibili</h3>
+     <p>Raphterra indica come tech slot di questa lista: la 4ª Vander Decken, la 4ª You Can Be My Samurai,
+     la 3ª Coffin Boat, la 4ª Billion Fold, la 3ª Luna e il 4° 10C Shanks. Sono i posti da cui pescare
+     se vuoi infilare una tech.</p></div>
+    <div class="card" style="margin-top:12px"><h3>Se il campo cambia</h3>
+     <p>Tanto mirror → aggiungi <b>Law &amp; Bepo</b> e <b>Bonney</b>. Tanti gialli → <b>Trash Event</b> e <b>Bonney</b>.
+     Tanto Elbaph → guarda la Trash build. Tanto Enel → <b>6C Mihawk</b> e <b>Perona 5c</b>.</p></div>
+    <p style="margin-top:16px"><a href="guide/raphterra.html">Leggi il capitolo di deckbuilding completo →</a></p>`},
+
+  hybrid:{eyebrow:'La lista che fa per te', title:'Ibrida 6c Law + 6c Mihawk', tagline:'La build preferita da Raphterra, e la risposta diretta al problema di farsi pulire le weenie.',
+   html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
+     Hai detto che perdi quando ti puliscono i searcher e salti il turno da 6. Questa build esiste esattamente per quello:
+     «This is one of the main reasons I am a fan of the 6C Mihawk + 6C Law hybrid build, since many players are aware
+     of the impact of denying the on-curve 6C Law by clearing your weenies».</div>
+    ${lista('hybrid')}
+    <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
+     <ul style="color:var(--dim);padding-left:18px">
+      <li>Puoi giocare <b>You Can Be My Samurai in anticipo</b> senza paura: non dipendi dal Law per il turno da 6.</li>
+      <li>Nel mirror il 6C Mihawk ti dà il corpo che l'avversario fatica a togliere in modo efficiente.</li>
+      <li>Hai una Luna in meno delle altre liste: conta le copie e non sprecarle per pulizie parziali.</li>
+      <li>La singola <b>Law &amp; Bepo</b> è la risposta di emergenza quando la combo Shanks+Decken non è completa.</li>
+     </ul></div>
+    <div class="card" style="margin-top:12px"><h3>Attenzione</h3>
+     <p>È la lista con più scelte da fare turno per turno: tre Law, due Mihawk 6c e tre Yasopp significano che
+     non trovi sempre il pezzo giusto. Se il tuo problema è il brick, questa non è la build: guarda il motore di pesca.</p></div>
+    <p style="margin-top:16px"><a href="mirror.html">Vai alla sezione mirror →</a></p>`},
+
+  trash:{eyebrow:'La lista che fa per te', title:'Trash build', tagline:'Quattro Coffin Boat, quattro Trash Event: la build costruita per non farsi travolgere dai corpi.',
+   html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
+     Hai detto che ti aspetti tanto Elbaph aggro e che accetti volentieri una carta situazionale pur di avere la risposta.
+     Questa è la build con il massimo di rimozione a basso costo.</div>
+    ${lista('trash')}
+    <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
+     <ul style="color:var(--dim);padding-left:18px">
+      <li>Il <b>Trash Event</b> pulisce le weenie avversarie presto: nel mirror ti chiude fuori il loro 6C Law.</li>
+      <li>Quattro <b>Coffin Boat</b> e due Kikunojo rendono il motore più stabile e riducono i whiff di Otama.</li>
+      <li>Solo due Otama e due Samurai: non contare sul pescare tanto, conta sul togliere bersagli.</li>
+      <li>Contro Black Luffy: tutti gli swing grossi sui giganti da 12+ costo, i piccoli sulle weenie.</li>
+     </ul></div>
+    <div class="card" style="margin-top:12px"><h3>Il rovescio della medaglia</h3>
+     <p>NebulusTCG taglia For Fun proprio perché la usa poco nel mirror, che considera il matchup più importante.
+     Se nel tuo campo il mirror pesa più dell'aggro, questa build ti lascia qualche carta morta di troppo.</p></div>
+    <p style="margin-top:16px"><a href="matchup.html#black-luffy">Vedi il matchup Black Luffy →</a></p>`},
+
+  starve:{eyebrow:'La lista che fa per te', title:'La lista di Rondino — lo starve', tagline:'Per chi non vuole correre: affamare, controllare, e chiudere solo quando è sicuro.',
+   html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
+     Hai detto che non arrivi vivo al turno di Shanks e che le partite lunghe ti piacciono. La linea di Rondino
+     è costruita esattamente per quello: non prendere vita all'avversario finché la sua board non è pulita.</div>
+    ${lista('starve')}
+    <div class="card" style="margin-top:12px"><h3>Lo schema, nelle sue parole</h3>
+     <p style="font-size:1.05rem;color:var(--txt)"><b>Starve → Trade into Board → Preserve Life → 10c Shanks → Stabilize → Attack Face</b></p>
+     <p style="color:var(--gold)">«Don't rush the last step.»</p>
+     <p>Contro Sabo: «Full starve them at 5 life until their board is cleared. Only then do we start attacking Leader.»
+     Contro Ace: «Don't even start the race» — e soprattutto «<b>Don't attack Leader just because you have spare attacks</b>».</p></div>
+    <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
+     <ul style="color:var(--dim);padding-left:18px">
+      <li>Sequenza di attacco per ripulire la board: <b>6k → 6k → 9k</b>.</li>
+      <li>Difendi la vita: countera ogni attacco che costa una sola carta, anche il primo della partita.</li>
+      <li>Nel mirror invece <b>non</b> affamare: Rondino stesso dice che è una cattiva strategia lì.</li>
+      <li>Quando sei avanti, cambia domanda: non «come aumento il vantaggio» ma «come posso ancora perdere?».</li>
+     </ul></div>
+    <div class="card" style="margin-top:12px"><h3>⚠️ Dove questa linea è contestata</h3>
+     <p>Contro <b>Black Luffy</b> NebulusTCG dice l'opposto: non starvare, perché leader e weenie restano a 5k
+     e perderesti troppi swing gratis. Vale la pena leggere entrambe prima di decidere.</p></div>
+    <p style="margin-top:16px"><a href="guide/rondino.html">Leggi la matchups bible di Rondino →</a></p>`},
+
+  draw:{eyebrow:'La lista che fa per te', title:'Il motore di pesca', tagline:'Quattro Coffin Boat, tre Luna, massima consistenza: la lista di NebulusTCG.',
+   html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
+     Hai detto che ti bricchi e che ti affidi a un ordine di ricerca preciso. Questa build massimizza il motore:
+     quattro Coffin Boat più tutti i searcher a quattro copie.</div>
+    ${lista('draw')}
+    <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
+     <ul style="color:var(--dim);padding-left:18px">
+      <li>C'è un <b>ordine dei searcher</b> preciso, un ordine di rest per la Samurai e un ordine di pickup per il 6 Law: imparali.</li>
+      <li>Gestisci il <b>loop del mazzo</b>: sapere cosa hai già pescato cambia le decisioni del late game.</li>
+      <li>Contro i gialli: <b>hard mulligan per Yasopp</b>, sempre.</li>
+      <li>Contro Linlin usa la formula: con <code>a</code> Luna e <code>b</code> Shanks in campo, il danno garantito è <code>(a²+a)/2 + a·b</code>.</li>
+     </ul></div>
+    <div class="card" style="margin-top:12px"><h3>La probabilità che ti serve sapere</h3>
+     <p>Per avere l'80% di probabilità di trovare una carta: se ne guardi 5 te ne servono almeno 13 nel mazzo,
+     se ne guardi 4 ne servono 16, se ne guardi 3 ne servono 20, se ne guardi 2 ne servono 27.</p></div>
+    <p style="margin-top:16px"><a href="guide/nebulus.html">Leggi la guida di NebulusTCG →</a></p>`},
+ }
+};
+runQuiz(CFG, '#q2');
+</script>
+</body></html>

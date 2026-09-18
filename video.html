@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="it"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Video — Green Mihawk OP17</title>
+<meta name="description" content="Tutti i video YouTube delle guide Green Mihawk OP17, divisi per argomento e matchup.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗡️</text></svg>">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="top"><div class="wrap topbar">
+<div class="brand"><span class="dot"></span><a href="index.html">Green Mihawk OP17</a></div>
+<nav class="main">
+<a href="index.html">Home</a>
+<a href="quiz-player.html">Quiz stile</a>
+<a href="quiz-deck.html">Quiz lista</a>
+<a href="matchup.html">Matchup</a>
+<a href="mirror.html">Mirror</a>
+<a href="guide/raphterra.html">Raphterra</a>
+<a href="guide/rondino.html">Rondino</a>
+<a href="guide/nebulus.html">NebulusTCG</a>
+<a href="guide/impact.html">Impact</a>
+<a href="guide/samsans.html">samsansOP</a>
+<a href="video.html">Video</a>
+<a href="carte.html">Carte</a>
+</nav></div></header>
+<div class="hero"><div class="wrap">
+<span class="badge b-sint">Videoteca</span>
+<h1 style="margin-top:12px">Tutti i <em>video</em> delle guide</h1>
+<p class="sub">Le due lezioni complete di Impact e samsansOP, più i 23 video di Raphterra
+divisi per argomento. Ogni voce dice a quale matchup serve.</p>
+<input class="searchbox" style="max-width:520px" placeholder="Filtra: mirror, robin, kaido, lethal…" data-searchfor=".vcard">
+</div></div>
+<section><div class="wrap"><div id="vidWrap"></div></div></section>
+<script src="data/video.js"></script>
+<script>
+const cats = [...new Set(VIDEO.map(v=>v.cat))];
+document.getElementById('vidWrap').innerHTML = cats.map(c=>{
+  const items = VIDEO.filter(v=>v.cat===c);
+  return `<h2 class="sec" style="margin-top:34px">${c}
+    <span style="color:var(--dim2);font-weight:400;font-size:.9rem">· ${items.length} video</span></h2>
+    <div class="vgrid">` + items.map(v=>`
+      <a class="vcard" href="${v.u}" target="_blank" rel="noopener">
+        <div class="pl">\u25b6 ${v.src}</div>
+        <h4>${v.t}</h4>
+        <p>${v.note||''}</p>
+        <p style="margin-top:7px"><span class="pill">${v.mu}</span></p>
+      </a>`).join('') + `</div>`;
+}).join('');
+</script>
+<footer><div class="wrap">
+<p><b>Green Mihawk OP17 — hub delle guide.</b> Il contenuto strategico è trascritto <b>verbatim</b> dalle
+fonti originali (inglese), le sintesi e i confronti sono in italiano.</p>
+<p>Immagini carte © Bandai / Shueisha. Le guide Metafy appartengono ai rispettivi autori: i PDF sorgente
+non sono ridistribuiti in questo repository. Uso personale di studio.</p>
+</div></footer>
+<script src="assets/app.js"></script></body></html>
