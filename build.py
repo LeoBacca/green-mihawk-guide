@@ -14,7 +14,7 @@ import pathlib
 import re
 import sys
 
-from render import render, md2html, chapter_map, CARD_IDS, ON_DISK  # noqa: F401
+from render import render, md2html, chapter_map, load_sintesi, CARD_IDS, ON_DISK  # noqa: F401
 
 ROOT = pathlib.Path(__file__).parent
 SCRATCH = pathlib.Path(
@@ -242,8 +242,18 @@ def tab_buttons(chaps, rel):
     return "".join(out)
 
 
-def pane(key, titolo, lede, md, rel, figs=None):
-    h, heads = render(md, rel, figs)
+# guide in prosa fitta: paragrafi spezzati in gruppi di frasi + sintesi per sezione (sintesi/<autore>/<slug>.md)
+PROSE = {"nebulus"}
+
+
+def pane(key, titolo, lede, md, rel, figs=None, autore=None):
+    sint = load_sintesi(ROOT / "sintesi" / autore / f"{key}.md") if autore in PROSE else None
+    h, heads = render(md, rel, figs, prose=autore in PROSE, sintesi=sint)
+    if sint:
+        lede = ("In testa a ogni sezione la <b>sintesi in italiano</b>; sotto, la trascrizione verbatim "
+                "spezzata in blocchi di poche frasi (le parole dell'autore non cambiano).")
+        lede += (' <button type="button" class="sint-tg" aria-pressed="false">'
+                 '⚡ Solo sintesi</button>')
     return (f'<div class="tabpane" data-pane="{key}">'
             f'<h2 class="sec pane-t">{html.escape(titolo)}</h2>'
             f'<p class="lede">{lede}</p>{chapter_map(heads, rel)}'
@@ -271,7 +281,7 @@ def build_guide_pages(chapters_by_author):
         meta = AUTORI[autore]
         panes = "".join(
             pane(slug, tit, LEDE.get(slug, f"Trascrizione verbatim dalla guida di {meta['nome']}."), body, "../",
-                 FIGS.get(f"{autore}/{slug}"))
+                 FIGS.get(f"{autore}/{slug}"), autore)
             for slug, tit, body, _g in chaps)
         body = guide_body(meta["badge"], meta["nome"],
                           f"{html.escape(meta['fonte'])} — testo integrale, capitolo per capitolo, nelle parole dell'autore.",

@@ -275,3 +275,13 @@ function runQuiz(cfg, rootSel){
 
   go(0);
 }
+
+/* --- guide in prosa: «Solo sintesi» richiude il testo integrale di ogni sezione --- */
+document.addEventListener('click', e=>{
+  const b = e.target.closest('.sint-tg');
+  if(!b) return;
+  const on = b.getAttribute('aria-pressed') !== 'true';
+  b.setAttribute('aria-pressed', on);
+  b.textContent = on ? '📖 Mostra testo integrale' : '⚡ Solo sintesi';
+  b.closest('.tabpane').querySelectorAll('details.full').forEach(d=>d.open = !on);
+});

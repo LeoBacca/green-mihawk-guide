@@ -95,7 +95,8 @@ def inline(t, rel=""):
 
 def esc(t, rel=""):
     # &nbsp; letterali dei sottotitoli YouTube ("[&nbsp;__&nbsp;]" = parola censurata)
-    return inline(html.escape(t, quote=False).replace("&amp;nbsp;", "&nbsp;"), rel)
+    return (inline(html.escape(t, quote=False).replace("&amp;nbsp;", "&nbsp;"), rel)
+            .replace("⟦", '<mark class="hl">').replace("⟧", "</mark>"))
 
 
 def strip_bold(t):
@@ -106,6 +107,79 @@ def slug(t):
     t = re.sub(r"<[^>]+>", "", t)
     t = re.sub(r"[^\w\s-]", "", t.lower(), flags=re.U)
     return re.sub(r"[\s_-]+", "-", t).strip("-")[:48] or "s"
+
+
+
+# ------------------------------------------------ prosa lunga -> blocchi di frasi
+
+_ABBR = re.compile(r"(?:\b(?:vs|e\.g|i\.e|etc|approx|aka)\.|(?:^|\s)\d{1,2}\.)$", re.I)
+
+
+def split_sentences(t):
+    parts = re.split(r"(?<=[.!?])\s+(?=[A-Z\"“(*])", t.strip())
+    out = []
+    for x in parts:
+        if out and (_ABBR.search(out[-1]) or out[-1].count("**") % 2 or out[-1].count("⟦") > out[-1].count("⟧")
+                    or out[-1].count("(") > out[-1].count(")") or out[-1].count("[") > out[-1].count("]")):
+            out[-1] += " " + x
+        else:
+            out.append(x)
+    return out
+
+
+def chunk_para(t, min_len=380, target=250):
+    """paragrafo lungo -> gruppi di 1-2 frasi (le parole non cambiano)."""
+    if len(t) < min_len:
+        return [t]
+    chunks, cur = [], ""
+    for sn in split_sentences(t):
+        if cur and len(cur) + len(sn) > target:
+            chunks.append(cur)
+            cur = sn
+        else:
+            cur = (cur + " " + sn).strip()
+    if cur:
+        if chunks and len(cur) < 70:
+            chunks[-1] += " " + cur
+        else:
+            chunks.append(cur)
+    return chunks
+
+
+def load_sintesi(path):
+    """sintesi/<autore>/<slug>.md -> {titolo sezione (minuscolo) | '_top': [punti]}"""
+    f = pathlib.Path(path)
+    if not f.exists():
+        return {}
+    out, cur = {}, None
+    for ln in f.read_text(encoding="utf-8").split("\n"):
+        m = re.match(r"^##\s+(.*)$", ln.strip())
+        if m:
+            k = m.group(1).strip()
+            cur = out.setdefault(k if k in ("_top", "_hl") else _skey(k), [])
+        elif cur is not None and re.match(r"^\s*[-*]\s+", ln):
+            cur.append(re.sub(r"^\s*[-*]\s+", "", ln).strip())
+    return out
+
+
+def mark_hl(t, phrases):
+    """frasi chiave (sintesi: ## _hl, testo esatto della fonte) -> evidenziate; le parole non cambiano."""
+    for ph in phrases or []:
+        k = t.find(ph)
+        if k >= 0:
+            t = t[:k] + "⟦" + ph + "⟧" + t[k + len(ph):]
+    return t
+
+
+def _skey(t):
+    return re.sub(r"\s+", " ", re.sub(r"[*_]", "", t)).strip().lower()
+
+
+def r_sintesi(items, rel, top=False):
+    lis = "".join(f"<li>{esc(x, rel)}</li>" for x in items)
+    lbl = "Il matchup in 30 secondi" if top == "mu" else ("Il capitolo in breve" if top else "In breve")
+    return (f'<div class="sint{" top" if top else ""}"><div class="sint-h">⚡ {lbl}'
+            f'<span>sintesi in italiano · sotto c\'è il testo integrale</span></div><ul>{lis}</ul></div>')
 
 
 # ------------------------------------------------------------ classificazione
@@ -289,6 +363,7 @@ FACT_PLAIN = re.compile(r"^([A-Za-z0-9][\w .'/&-]{0,22}):\s+(\S.{0,70})$")
 CONCEPT = re.compile(r"^\*\*([^*]{2,70}?)([:;]?)\*\*([:;]?)\s+(.+)$", re.S)
 LABELED = re.compile(r"^\*\*([^*]{2,60}?)(?:[:;]\*\*|\*\*[:;]|\*\*(?=\s+—))\s*(.+)$", re.S)
 TS = re.compile(r"^\*\*\[(\d\d:\d\d:\d\d)\]\((https?://[^)]+)\)\*\*\s*(.*)$", re.S)
+CURVE_P = re.compile(r"\d{1,2}(?:->\d{1,2}){2,}")
 STATS = re.compile(r"^\*\*([A-Za-z ]{2,14}):\*\*\s*((?:[\w]+ → \d+(?: · )?){2,})$")
 
 
@@ -480,6 +555,16 @@ def enrich(blocks):
             continue
         elif t == "qbtn":
             pass
+        # righe di curva DON in fila -> tabellina delle curve
+        elif t == "p" and CURVE_P.search(b["txt"]) and len(b["txt"]) < 150:
+            j = i
+            while j < len(out) and out[j]["t"] == "p" and CURVE_P.search(out[j]["txt"]) and len(out[j]["txt"]) < 150:
+                j += 1
+            if j - i >= 2:
+                res.append({"t": "curves", "rows": [x["txt"] for x in out[i:j]]})
+                i = j
+                continue
+            res.append(b)
         # frase che termina con ":" seguita da frasi brevi -> elenco
         elif t == "p" and b["txt"].endswith(":") and len(b["txt"]) < 220:
             j = i + 1
@@ -611,7 +696,7 @@ def r_facts(items, rel):
 def r_list(b, rel):
     tag = "ol" if b["t"] == "ol" else "ul"
     lv = b.get("lv") or [0] * len(b["items"])
-    cls = ' class="soft"' if b.get("soft") else ""
+    cls = ' class="soft"' if b.get("soft") else (' class="big"' if b.get("big") else "")
     out, depth = [f"<{tag}{cls}>"], 0
     for k, (it, level) in enumerate(zip(b["items"], lv)):
         level = min(level, depth + 1)
@@ -770,7 +855,7 @@ def r_quote(lines, rel, paras=None):
     return f'<div class="note">{esc(txt, rel)}</div>'
 
 
-def render(md, rel="", figs=None, wrap=True):
+def render(md, rel="", figs=None, wrap=True, prose=False, sintesi=None):
     """-> (html, headings[(lvl, id, testo, leader)])"""
     figs = [(rx, list(p)) for rx, p in (figs or [])]
     blocks = enrich(parse(md))
@@ -788,7 +873,21 @@ def render(md, rel="", figs=None, wrap=True):
             continue
         k += 1
     out, heads, used = [], [], {}
-    state = {"sec": False, "pan": False}
+    state = {"sec": False, "pan": False, "det": False}
+    sintesi = sintesi or {}
+    hlp = sintesi.get("_hl")
+
+    def close_det():
+        if state["det"]:
+            out.append("</details>")
+            state["det"] = False
+
+    def open_sint(txt):
+        items = sintesi.get(_skey(txt))
+        if items:
+            out.append(r_sintesi(items, rel))
+            out.append('<details class="full" open><summary><span>Testo integrale</span></summary>')
+            state["det"] = True
 
     def uid(t):
         s = slug(t)
@@ -796,6 +895,7 @@ def render(md, rel="", figs=None, wrap=True):
         return s if used[s] == 1 else f"{s}-{used[s]}"
 
     def close_pan():
+        close_det()
         if state["pan"]:
             out.append("</div>")
             state["pan"] = False
@@ -826,6 +926,9 @@ def render(md, rel="", figs=None, wrap=True):
                 out.append(f'<section class="gs{" mu" if ld else ""}"><div class="gs-h">{img}'
                            f'<h2 id="{hid}" data-t="{html.escape(strip_bold(txt))}">{esc(txt, rel)}</h2></div><div class="gs-b">')
                 state["sec"] = True
+                if sintesi.get("_top"):
+                    out.append(r_sintesi(sintesi["_top"], rel, "mu" if ld else True))
+                    sintesi = dict(sintesi, _top=None)
                 continue
             if lvl == 3 and wrap:
                 close_pan()
@@ -836,11 +939,28 @@ def render(md, rel="", figs=None, wrap=True):
                 out.append(f'<div class="pan{" mu" if ld else ""}"><h3 id="{hid}" data-t="{html.escape(strip_bold(txt))}">'
                            f'{img}{tag}{esc(txt, rel)}</h3>')
                 state["pan"] = True
+                open_sint(txt)
                 continue
+            close_det()
             hl = min(lvl, 5)
             out.append(f'<h{hl}>{tag}{esc(txt, rel)}</h{hl}>')
+            open_sint(txt)
         elif t == "p":
-            out.append(f"<p>{esc(b['txt'], rel)}</p>")
+            b["txt"] = mark_hl(b["txt"], hlp)
+            ch = chunk_para(b["txt"]) if prose else [b["txt"]]
+            if len(ch) > 1:
+                out.append('<div class="pch">' + "".join(f"<p>{esc(x, rel)}</p>" for x in ch) + "</div>")
+            else:
+                out.append(f"<p>{esc(b['txt'], rel)}</p>")
+        elif t == "curves":
+            rows = []
+            for x in b["rows"]:
+                m = CURVE_P.search(x)
+                lab, rest = x[:m.start()].strip(), x[m.start():]
+                side = "our" if re.match(r"^(our|my|we)", lab, re.I) else ("their" if re.match(r"^(their|his|opp)", lab, re.I) else "")
+                rows.append(f'<div class="cv-r {side}"><span class="cv-l">{esc(lab, rel)}</span>'
+                            f'<span class="cv-c">{esc(rest, rel)}</span></div>')
+            out.append(f'<div class="curves">{"".join(rows)}</div>')
         elif t == "ph":
             ph = phase_of(b["txt"])
             tag = f'<span class="phase ph-{ph[0]}">{ph[1]}</span>' if ph else ""
@@ -896,6 +1016,9 @@ def render(md, rel="", figs=None, wrap=True):
                             f'▶ {x["time"]}</a><div class="tl-x">{esc(x["txt"], rel)}</div></div>')
             out.append(f'<div class="tl">{"".join(rows)}</div>')
         elif t in ("ul", "ol"):
+            b["items"] = [mark_hl(x, hlp) for x in b["items"]]
+            if prose and max(len(x) for x in b["items"]) > 240:
+                b["big"] = True
             out.append(r_list(b, rel))
         elif t == "quote":
             out.append(r_quote(b["lines"], rel, b.get("paras")))

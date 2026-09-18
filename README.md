@@ -100,3 +100,8 @@ spezzata a metà.
 
 Immagini carte © Bandai / Shueisha. Le guide Metafy appartengono ai rispettivi autori: i PDF sorgente non
 sono ridistribuiti in questo repository. Progetto personale di studio.
+
+
+## Guide in prosa fitta (Nebulus)
+
+`build.py` → `PROSE = {"nebulus"}`: il renderer spezza i paragrafi lunghi in gruppi di 1-2 frasi, mette le curve DON in tabellina e legge `sintesi/<autore>/<capitolo>.md` (`## _top` = riquadro del capitolo, `## <titolo esatto della sezione>` = riquadro «In breve»). Il bottone «Solo sintesi» richiude il testo integrale. Le trascrizioni restano verbatim.
