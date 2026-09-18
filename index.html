@@ -7,17 +7,24 @@
 </head><body>
 <header class="top"><div class="wrap topbar">
 <div class="brand"><span class="dot"></span><a href="index.html">Green Mihawk OP17</a></div>
+<button class="navtoggle" type="button" aria-label="Apri il menu" aria-expanded="false"><span></span></button>
 <nav class="main">
 <a href="index.html">Home</a>
-<a href="quiz-player.html">Quiz stile</a>
-<a href="quiz-deck.html">Quiz lista</a>
+<div class="dd"><button class="dd-b" type="button" aria-expanded="false">Quiz <i>▾</i></button><div class="dd-m">
+ <a href="quiz-deck.html"><b>Quale lista fa per te</b><span>11 domande, compresi i matchup che soffri tu</span></a>
+ <a href="quiz-player.html"><b>Che giocatore sei</b><span>A quale dei cinque autori somigli</span></a>
+</div></div>
 <a href="matchup.html">Matchup</a>
 <a href="mirror.html">Mirror</a>
-<a href="guide/raphterra.html">Raphterra</a>
-<a href="guide/rondino.html">Rondino</a>
-<a href="guide/nebulus.html">NebulusTCG</a>
-<a href="guide/impact.html">Impact</a>
-<a href="guide/samsans.html">samsansOP</a>
+<a href="confronto.html">LawSopp vs HawkRona</a>
+<div class="dd"><button class="dd-b" type="button" aria-expanded="false">Guide <i>▾</i></button><div class="dd-m">
+ <a href="guide/raphterra.html"><b><i class="sw" style="background:var(--raph)"></i>Raphterra</b><span>La più sistematica · 6 capitoli</span></a>
+ <a href="guide/rondino.html"><b><i class="sw" style="background:var(--rond)"></i>Rondino</b><span>La matchups bible · masterclass 16/09</span></a>
+ <a href="guide/nebulus.html"><b><i class="sw" style="background:var(--neb)"></i>NebulusTCG</b><span>Tech, probabilità, mazzi gialli</span></a>
+ <a href="guide/impact.html"><b><i class="sw" style="background:var(--impact)"></i>Impact</b><span>Law + Yasopp · slide, video, Q&amp;A 17/09</span></a>
+ <a href="guide/samsans.html"><b><i class="sw" style="background:var(--sam)"></i>samsansOP</b><span>Mihawk 6c + Perona 5c · video</span></a>
+ <a href="guide/dojo.html"><b><i class="sw" style="background:var(--dojo)"></i>The Dojo</b><span>Sessioni: VOD review e ladder di Elijah</span></a>
+</div></div>
 <a href="video.html">Video</a>
 <a href="carte.html">Carte</a>
 </nav></div></header>
@@ -38,13 +45,36 @@
  <img class="hero-card" src="carte/OP14-020.png" alt="Dracule Mihawk OP14-020">
 </div>
 <div class="kpi" style="margin-top:34px">
-  <div><b>5</b><span>guide trascritte</span></div>
+  <div><b>5+</b><span>guide e sessioni</span></div>
   <div><b>12</b><span>matchup schedati</span></div>
-  <div><b>25</b><span>video indicizzati</span></div>
+  <div><b>28</b><span>video indicizzati</span></div>
   <div><b>67</b><span>carte di riferimento</span></div>
-  <div><b>~330k</b><span>caratteri verbatim</span></div>
+  <div><b>~1M</b><span>caratteri verbatim</span></div>
 </div>
 </div></div>
+
+<section style="padding-bottom:0"><div class="wrap">
+  <div class="agg agg-top" style="margin:0">
+    <b class="agg-h">🆕 Aggiornamento 16–17 settembre</b>
+    <p style="font-size:1.02rem">Il «rest spell» — <b>I Never Bother to Remember the Faces of Trash</b> — è la novità della settimana:
+    Rondino lo gioca a 3 al posto di Bonney e Perona 5c, Impact a 4 con 4 Coffin Boat. Con lui Sabo ed Enel passano da matchup
+    scomodi a matchup buoni, e lo starve diventa il piano di default contro metà del campo.</p>
+    <div class="grid g3" style="margin-top:12px">
+      <a class="card" href="guide/impact.html#qa1709"><span class="badge b-impact">Impact · 17/09</span>
+        <h3 style="margin-top:8px">Deep Dive Q&amp;A pre-Finals</h3>
+        <p>Le tre build (tempo, rest spell, ibrida), i conteggi carta per carta, 7 matchup rivisti e 27 domande e risposte.</p></a>
+      <a class="card" href="guide/rondino.html#06-masterclass-16-09"><span class="badge b-rond">Rondino · 16/09</span>
+        <h3 style="margin-top:8px">Masterclass «Oonga Boonga or Big Brain?»</h3>
+        <p>La mano decide il piano, la lista nuova, starve vs race, le linee di letale fisse e 6 matchup con verdetto.</p></a>
+      <a class="card" href="guide/dojo.html"><span class="badge b-dojo">The Dojo</span>
+        <h3 style="margin-top:8px">Le sessioni di Elijah</h3>
+        <p>VOD review vs Robin (9/09), ladder Law+Yasopp vs Mihawk+Perona (3/09), VOD review con Equinby (27/08).</p></a>
+    </div>
+    <p style="margin:12px 0 0;font-size:.88rem;color:var(--dim)">Le novità sono già incrociate con le sezioni del sito:
+    <a href="matchup.html">matchup</a> (riquadri 🆕 e 4 disaccordi nuovi), <a href="mirror.html">mirror</a>,
+    <a href="quiz-deck.html">quiz sulla lista</a> e <a href="confronto.html">confronto</a>.</p>
+  </div>
+</div></section>
 
 <section><div class="wrap">
   <h2 class="sec"><span class="n">01</span>Da dove partire</h2>
@@ -54,7 +84,7 @@
       <span class="badge b-sint">Quiz</span>
       <h3 style="margin-top:10px">Capisci come buildare il tuo mazzo</h3>
       <p>La lista perfetta non esiste: esiste quella giusta per <b>cosa soffri tu</b> e per <b>cosa pensi di incontrare</b>.
-      Dieci domande e ti dico da quale delle liste reali partire, cosa cambiare e come va giocata.</p>
+      Undici domande — compresi i matchup in cui ti senti sotto tu — e ti dico da quale delle liste reali partire, quali tech mettere e come va giocata.</p>
     </a>
     <a class="card" href="quiz-player.html">
       <span class="badge b-sint">Quiz</span>
@@ -89,8 +119,11 @@
 
 <section style="padding-top:0"><div class="wrap">
   <h2 class="sec"><span class="n">03</span>Le cinque guide, integrali</h2>
-  <p class="lede">Nessun riassunto: il testo è quello originale, diviso in capitoli navigabili.
-  Le carte citate diventano immagini, i board e le note della fonte diventano riquadri.</p>
+  <p class="lede">Nessun riassunto: il testo è quello originale, parola per parola — ma impaginato perché non sia un
+  muro di testo. Ogni capitolo ha un indice laterale; i titoletti dell'autore diventano sottotitoli con la fase di gioco
+  (mulligan, early, mid, late), le sue frasi in grassetto diventano <b>punti chiave</b>, le sequenze «A → B → C» diventano
+  schemi, le mani di mulligan diventano carte vere (e i quiz dell'autore si giocano), e le cheat sheet e le decklist
+  originali compaiono dove il testo le cita.</p>
   <div class="grid g2">
     <a class="card" href="guide/raphterra.html">
       <span class="badge b-raph">Raphterra</span>
@@ -131,7 +164,8 @@
     </a>
     <div class="card" style="background:var(--bg2)">
       <h3>📚 E poi</h3>
-      <p><a href="video.html">Tutti i 25 video</a> divisi per argomento e matchup.<br>
+      <p><a href="guide/dojo.html">Le sessioni del Dojo</a>: VOD review e ladder di Elijah, dall'archivio «The Codex».<br>
+      <a href="video.html">Tutti i 28 video</a> divisi per argomento e matchup.<br>
       <a href="carte.html">Le 67 carte citate</a>, raggruppate per ruolo — utile quando una guida usa un soprannome.<br>
       <a href="versione-precedente.html">La versione precedente del sito</a>, quella a pagina singola con Impact e samsansOP.</p>
     </div>

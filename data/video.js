@@ -6,6 +6,14 @@ const VIDEO = [
  {src:'samsansOP', cat:'Lezioni complete', t:'OP17 Mihawk Deep Dive',
   u:'https://www.youtube.com/watch?v=MB2ejUdFAkY', note:'2h00 · versione Mihawk 6c + Perona 5c. Analisi carta per carta e matchup.', mu:'generale'},
 
+ /* ---- Settembre: le sessioni nuove ---- */
+ {src:'Impact', cat:'Sessioni di settembre', t:'Deep Dive Q&amp;A — «Answering every question + talking about the meta» (17/09)',
+  u:'https://www.youtube.com/watch?v=Pj5gQ2nkovU', note:'2h43 · il rest spell, le tre build, i matchup rivisti e il weekend di torneo. Note complete nella pagina di Impact.', mu:'meta · rest spell'},
+ {src:'Rondino', cat:'Sessioni di settembre', t:'«Mihawk: Oonga Boonga or Big Brain? Ranked games with Roberto» (16/09)',
+  u:'https://www.youtube.com/watch?v=mMh2TbOtPi8', note:'2h20 · masterclass Dog of Wisdom: il game tree, la lista senza Bonney e Perona 5c, starve vs race.', mu:'generale · starve'},
+ {src:'Rondino', cat:'Sessioni di settembre', t:'Masterclass del 16/09 — parte 2',
+  u:'https://www.youtube.com/watch?v=YZ4G5Sazwn0', note:'La seconda parte della stessa sessione.', mu:'generale'},
+
  /* ---- Raphterra · Deckbuilding ---- */
  {src:'Raphterra', cat:'Deckbuilding', t:'10C Shanks — Mihawk vs Green Shanks',
   u:'https://www.youtube.com/watch?v=ziYvNYx2oPo', note:'Perché 10C Shanks ridisegna il mazzo.', mu:'shanks'},

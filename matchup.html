@@ -7,17 +7,24 @@
 </head><body>
 <header class="top"><div class="wrap topbar">
 <div class="brand"><span class="dot"></span><a href="index.html">Green Mihawk OP17</a></div>
+<button class="navtoggle" type="button" aria-label="Apri il menu" aria-expanded="false"><span></span></button>
 <nav class="main">
 <a href="index.html">Home</a>
-<a href="quiz-player.html">Quiz stile</a>
-<a href="quiz-deck.html">Quiz lista</a>
+<div class="dd"><button class="dd-b" type="button" aria-expanded="false">Quiz <i>▾</i></button><div class="dd-m">
+ <a href="quiz-deck.html"><b>Quale lista fa per te</b><span>11 domande, compresi i matchup che soffri tu</span></a>
+ <a href="quiz-player.html"><b>Che giocatore sei</b><span>A quale dei cinque autori somigli</span></a>
+</div></div>
 <a href="matchup.html">Matchup</a>
 <a href="mirror.html">Mirror</a>
-<a href="guide/raphterra.html">Raphterra</a>
-<a href="guide/rondino.html">Rondino</a>
-<a href="guide/nebulus.html">NebulusTCG</a>
-<a href="guide/impact.html">Impact</a>
-<a href="guide/samsans.html">samsansOP</a>
+<a href="confronto.html">LawSopp vs HawkRona</a>
+<div class="dd"><button class="dd-b" type="button" aria-expanded="false">Guide <i>▾</i></button><div class="dd-m">
+ <a href="guide/raphterra.html"><b><i class="sw" style="background:var(--raph)"></i>Raphterra</b><span>La più sistematica · 6 capitoli</span></a>
+ <a href="guide/rondino.html"><b><i class="sw" style="background:var(--rond)"></i>Rondino</b><span>La matchups bible · masterclass 16/09</span></a>
+ <a href="guide/nebulus.html"><b><i class="sw" style="background:var(--neb)"></i>NebulusTCG</b><span>Tech, probabilità, mazzi gialli</span></a>
+ <a href="guide/impact.html"><b><i class="sw" style="background:var(--impact)"></i>Impact</b><span>Law + Yasopp · slide, video, Q&amp;A 17/09</span></a>
+ <a href="guide/samsans.html"><b><i class="sw" style="background:var(--sam)"></i>samsansOP</b><span>Mihawk 6c + Perona 5c · video</span></a>
+ <a href="guide/dojo.html"><b><i class="sw" style="background:var(--dojo)"></i>The Dojo</b><span>Sessioni: VOD review e ladder di Elijah</span></a>
+</div></div>
 <a href="video.html">Video</a>
 <a href="carte.html">Carte</a>
 </nav></div></header>
@@ -84,6 +91,7 @@ i punti su cui si contraddicono. Perché è lì che devi decidere tu.</p>
 <section style="padding-top:0"><div class="wrap">
   <h2 class="sec"><span class="n">03</span>Scheda per leader</h2>
   <p class="lede">Clicca un leader per aprire la scheda completa.</p>
+  <div id="muNovita"></div>
   <input class="searchbox" placeholder="Filtra per leader, colore o parola chiave…  (es. starve, yasopp, giallo)" data-searchfor=".mu-item">
   <div id="muList"></div>
   <h3 style="margin-top:34px;font-size:1.05rem">Matchup nominati ma senza scheda</h3>
@@ -98,6 +106,7 @@ Le sintesi, i confronti e le note di conflitto sono mie.</p>
 
 <script src="assets/app.js"></script>
 <script src="data/matchup.js"></script>
+<script src="data/aggiornamenti.js"></script>
 <script>
 const VLBL = {fav:['v-fav','Favorevole'], even:['v-even','Pari'], unf:['v-unf','Sfavorevole'], na:['v-even','N/D']};
 const NEB_ROWS = [
@@ -119,6 +128,16 @@ document.getElementById('nebTable').innerHTML = NEB_ROWS.map(r=>
      <td style="color:${tone(r[1])}">${r[1]}</td>
      <td style="color:${tone(r[2])}">${r[2]}</td></tr>`).join('');
 
+function srcBadge(f){
+  const s = FONTI[f] || FONTI_AGG[f];
+  return `<a href="${s.link}" class="badge ${s.badge}" style="text-decoration:none;align-self:start">${s.nome}</a>`;
+}
+function aggBox(id){
+  const a = AGGIORNAMENTI[id];
+  if(!a) return '';
+  return `<div class="agg"><b class="agg-h">🆕 Aggiornamento settembre</b>
+    ${a.voci.map(v=>`<div class="srcline">${srcBadge(v.f)}<div>${v.txt}</div></div>`).join('')}</div>`;
+}
 function srcLine(v){
   const f = FONTI[v.f];
   return `<div class="srcline">
@@ -133,15 +152,17 @@ document.getElementById('muList').innerHTML = MATCHUP.map(m=>{
               + (m.troncato?'<span class="pill" style="border-color:var(--red);color:#f87171">⚠️ fonte troncata</span>':'');
   const carte = (m.carte||[]).map(c=>`<div class="cardbox" style="width:88px"><img src="carte/${c}.png" alt="" loading="lazy"><span>${c}</span></div>`).join('');
   const boxes = (m.boxes||[]).map(b=>`<div class="note"><b style="display:block;margin-bottom:4px">${b.t}</b>${b.txt}</div>`).join('');
-  return `<details class="acc mu-item">
+  return `<details class="acc mu-item" id="${m.id}">
     <summary>
       <img src="carte/${m.carta}.png" alt="" style="width:34px;border-radius:4px" loading="lazy">
       <span>${m.nome}<br><span style="font-weight:400;color:var(--dim2);font-size:.8rem">${m.colore}</span></span>
+      ${AGGIORNAMENTI[m.id]?.pill?`<span class="pill agg-pill">🆕 ${AGGIORNAMENTI[m.id].pill}</span>`:''}
       <span class="verdict ${vc}" style="margin-left:auto">${vl}</span>
     </summary>
     <div class="acc-body">
       <p style="margin-top:0">${m.sintesi}</p>
       <div style="margin-bottom:14px">${flags}</div>
+      ${aggBox(m.id)}
       ${m.troncato?`<div class="note trunc">⚠️ ${m.troncato}</div>`:''}
 
       <h4 style="color:var(--gold);margin:18px 0 6px">Cosa dice ogni fonte</h4>
@@ -153,8 +174,8 @@ document.getElementById('muList').innerHTML = MATCHUP.map(m=>{
       ${m.accordo.length?`<div class="consensus" style="margin-top:18px"><b>Dove vanno d'accordo</b>
         <ul style="margin:0;padding-left:18px">${m.accordo.map(a=>`<li style="margin:5px 0">${a}</li>`).join('')}</ul></div>`:''}
 
-      ${m.conflitti.map(c=>`<div class="conflict"><b>⚔️ ${c.t}</b>
-        ${c.pos.map(p=>`<div style="margin:7px 0"><span class="badge ${FONTI[p.f].badge}">${FONTI[p.f].nome}</span> ${p.txt}</div>`).join('')}
+      ${m.conflitti.concat((AGGIORNAMENTI[m.id]?.conflitti||[]).map(c=>({...c, nuovo:true}))).map(c=>`<div class="conflict"><b>⚔️ ${c.nuovo?'🆕 ':''}${c.t}</b>
+        ${c.pos.map(p=>`<div style="margin:7px 0">${srcBadge(p.f)} ${p.txt}</div>`).join('')}
         ${c.nota?`<div style="margin-top:9px;padding-top:9px;border-top:1px solid var(--line);font-size:.87rem;color:var(--dim)">💡 ${c.nota}</div>`:''}
       </div>`).join('')}
 
@@ -169,6 +190,19 @@ document.getElementById('muOpen').innerHTML = MATCHUP_APERTI.map(o=>
   `<div class="card"><h3>${o.nome}</h3><p>${o.nota}</p></div>`).join('');
 
 document.getElementById('kMu').textContent = MATCHUP.length;
-document.getElementById('kConf').textContent = MATCHUP.reduce((n,m)=>n+m.conflitti.length,0);
+document.getElementById('muNovita').innerHTML = `<div class="agg agg-top"><b class="agg-h">🆕 Settembre · ${NOVITA.titolo}</b>
+  <p>${NOVITA.testo}</p>
+  ${NOVITA.citazioni.map(v=>`<div class="srcline">${srcBadge(v.f)}<div>${v.txt}</div></div>`).join('')}
+  <p style="margin:10px 0 0;font-size:.85rem;color:var(--dim)">Nelle schede qui sotto il riquadro <b>🆕 Aggiornamento settembre</b> mette
+  le posizioni nuove accanto a quelle delle guide di agosto: i verdetti originali restano com'erano.</p></div>`;
+
+/* matchup.html#<id> apre direttamente quel matchup (link dal quiz e dalle altre pagine) */
+function openFromHash(){
+  const d = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if(d && d.tagName==='DETAILS'){ d.open = true; setTimeout(()=>d.scrollIntoView({block:'start'}), 60); }
+}
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
+document.getElementById('kConf').textContent = MATCHUP.reduce((n,m)=>n+m.conflitti.length+(AGGIORNAMENTI[m.id]?.conflitti.length||0),0);
 </script>
 </body></html>

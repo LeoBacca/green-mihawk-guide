@@ -1,23 +1,30 @@
 <!DOCTYPE html><html lang="it"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Come buildare il tuo Mihawk — Green Mihawk OP17</title>
-<meta name="description" content="Quiz: dieci domande su cosa soffri e cosa ti aspetti di incontrare, e ti dico quale lista Green Mihawk fa per te e come giocarla.">
+<meta name="description" content="Quiz: undici domande su cosa soffri e cosa ti aspetti di incontrare, e ti dico quale lista Green Mihawk fa per te e come giocarla.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗡️</text></svg>">
 <link rel="stylesheet" href="assets/style.css">
 </head><body>
 <header class="top"><div class="wrap topbar">
 <div class="brand"><span class="dot"></span><a href="index.html">Green Mihawk OP17</a></div>
+<button class="navtoggle" type="button" aria-label="Apri il menu" aria-expanded="false"><span></span></button>
 <nav class="main">
 <a href="index.html">Home</a>
-<a href="quiz-player.html">Quiz stile</a>
-<a href="quiz-deck.html">Quiz lista</a>
+<div class="dd"><button class="dd-b" type="button" aria-expanded="false">Quiz <i>▾</i></button><div class="dd-m">
+ <a href="quiz-deck.html"><b>Quale lista fa per te</b><span>11 domande, compresi i matchup che soffri tu</span></a>
+ <a href="quiz-player.html"><b>Che giocatore sei</b><span>A quale dei cinque autori somigli</span></a>
+</div></div>
 <a href="matchup.html">Matchup</a>
 <a href="mirror.html">Mirror</a>
-<a href="guide/raphterra.html">Raphterra</a>
-<a href="guide/rondino.html">Rondino</a>
-<a href="guide/nebulus.html">NebulusTCG</a>
-<a href="guide/impact.html">Impact</a>
-<a href="guide/samsans.html">samsansOP</a>
+<a href="confronto.html">LawSopp vs HawkRona</a>
+<div class="dd"><button class="dd-b" type="button" aria-expanded="false">Guide <i>▾</i></button><div class="dd-m">
+ <a href="guide/raphterra.html"><b><i class="sw" style="background:var(--raph)"></i>Raphterra</b><span>La più sistematica · 6 capitoli</span></a>
+ <a href="guide/rondino.html"><b><i class="sw" style="background:var(--rond)"></i>Rondino</b><span>La matchups bible · masterclass 16/09</span></a>
+ <a href="guide/nebulus.html"><b><i class="sw" style="background:var(--neb)"></i>NebulusTCG</b><span>Tech, probabilità, mazzi gialli</span></a>
+ <a href="guide/impact.html"><b><i class="sw" style="background:var(--impact)"></i>Impact</b><span>Law + Yasopp · slide, video, Q&amp;A 17/09</span></a>
+ <a href="guide/samsans.html"><b><i class="sw" style="background:var(--sam)"></i>samsansOP</b><span>Mihawk 6c + Perona 5c · video</span></a>
+ <a href="guide/dojo.html"><b><i class="sw" style="background:var(--dojo)"></i>The Dojo</b><span>Sessioni: VOD review e ladder di Elijah</span></a>
+</div></div>
 <a href="video.html">Video</a>
 <a href="carte.html">Carte</a>
 </nav></div></header>
@@ -26,8 +33,9 @@
 <span class="badge b-sint">Quiz 2 di 2</span>
 <h1 style="margin-top:12px">Capisci come <em>buildare</em> il tuo mazzo</h1>
 <p class="sub">La lista perfetta non esiste. Esiste la lista giusta <b>per quello che soffri tu</b> e per quello che
-pensi di incontrare al tuo evento. Dieci domande, e alla fine ti dico da quale delle sette liste reali
-di queste guide partire, cosa cambiare e — soprattutto — <b>come va giocata</b>.</p>
+pensi di incontrare al tuo evento. Undici domande — fra cui <b>i matchup in cui ti senti sotto tu</b> —
+e alla fine ti dico da quale delle liste reali di queste guide partire, quali tech mettere per i tuoi
+matchup e — soprattutto — <b>come va giocata</b>.</p>
 </div></div>
 
 <section><div class="wrap">
@@ -90,8 +98,174 @@ function lista(k){
   </div>`;
 }
 
+/* --- i matchup che soffri TU: cosa dicono le fonti su turno, tech e lista ---
+   Le tech vengono dal «Quick Tech Cheatsheet Against The Meta» di Raphterra, dal capitolo
+   TECH CARDS di NebulusTCG, dalle schede matchup delle guide, dal documento LawSopp vs HawkRona
+   e — da settembre — dalla masterclass di Rondino (16/09) e dal Q&A di Impact sul Dojo (17/09).
+   Il «rest spell» è I Never Bother to Remember the Faces of Trash (OP14-038), il «Trash Event». */
+const LISTA_NOME = {std:'Standard 6c Law', hybrid:'Ibrida Law+Mihawk', trash:'Rest spell (Trash build)', starve:'Starve (Rondino)', draw:'Motore di pesca'};
+const RS = ['OP14-038','Rest spell (Trash Event)'];
+const MU = {
+ 'mirror':{nome:'Green Mihawk — mirror', carta:'OP14-020', lista:'hybrid',
+   score:{hybrid:3, std:1.5, draw:1, trash:.5},
+   turno:'Secondo — tutte le fonti, anche a settembre',
+   piano:'Rondino: «You need to identify as early as possible what kind of game you\'re playing». Value di default, aggro appena il gioco di valore gira male.',
+   nuovo:'Rondino (16/09): «Starving in the mirror is wrong». Impact (17/09): prendi le prime due vite, difendi la terza; la build Perona/tempo è «best in the mirror», ma il rest spell non è un sacrificio.',
+   tech:[[RS[0],RS[1],'Rondino (16/09): fa il lavoro di Bonney nel mirror da primo, «far more consistent»; Impact (17/09): «you\'re not making sacrifices to play it»'],
+         ['OP08-036','Electrical Luna','Raphterra (tech cheatsheet); NebulusTCG taglia For Fun per avere più Luna — ma Rondino (16/09) si ferma a 2'],
+         ['ST24-004','Law & Bepo','Raphterra (tech cheatsheet); Impact la gioca a 1 — Elijah (3/09) la trova «underwhelming in the mirror»'],
+         ['OP07-026','Jewelry Bonney','Raphterra (tech cheatsheet); samsansOP: «Stun Bonney» per chi va primo — Rondino (16/09) l\'ha tolta per il rest spell']],
+   nota:'Nella Fast Decision Table del confronto: se nel tuo giro c\'è tanto Mihawk, si parte da <b>HawkRona</b> (6c Mihawk + Perona) di Sam.'},
+ 'py-robin':{nome:'Purple Yellow Robin', carta:'OP09-062', lista:'draw',
+   score:{draw:2.5, trash:1.5},
+   turno:'Conteso: secondo per NebulusTCG, Raphterra e Rondino — primo per Impact ed Elijah',
+   piano:'NebulusTCG: «HARD MULLIGAN for YASOPP». Yasopp uccide i corpi da 4k prima che Big Mom li porti a 8k.',
+   nuovo:'Impact (17/09) ora lo dà «slightly unfavored, ~45-55»: controllo della board finché Big Mom è «just a 10-mana heal + draw»; Law è «the best card in the matchup». Rondino (16/09): contro Robin non si affama.',
+   tech:[['OP17-031','Yasopp (4 copie)','NebulusTCG, Impact, Raphterra: è la carta del matchup'],
+         [RS[0],RS[1],'Raphterra: la Trash build nasce «to improve the matchups against PY Robin and Elbaf Aggro»; Rondino (16/09) la usa al posto di Bonney anche per Robin'],
+         ['OP07-026','Jewelry Bonney','Raphterra (tech cheatsheet): «The Bonney Delay» sul turno della 10C Linlin — superata dal rest spell per Rondino']],
+   nota:'Sui gialli la fonte più dettagliata è NebulusTCG: parti dalla sua lista.'},
+ 'y-linlin':{nome:'Yellow Linlin', carta:'OP17-099', lista:'draw',
+   score:{draw:3, std:.5},
+   turno:'Secondo (NebulusTCG)',
+   piano:'NebulusTCG: «my gameplan allows Mihawk to win over 80% of the time even going first». Conta le Luna: con a Luna e b Shanks il danno garantito è (a²+a)/2 + a·b.',
+   tech:[['OP17-031','Yasopp (4 copie)','NebulusTCG: «Hard Mulligan for Yasopp»'],
+         ['OP08-036','Electrical Luna','NebulusTCG: la formula del danno si basa sul numero di Luna'],
+         ['OP07-026','Jewelry Bonney','NebulusTCG: stall «vs decks that go extremely tall like 10c Linlin decks» (però lui non la gioca)']]},
+ 'uy-boa':{nome:'Blue Yellow Boa Hancock', carta:'OP14-041', lista:'draw',
+   score:{draw:2, std:1},
+   turno:'Secondo (NebulusTCG, Raphterra)',
+   piano:'Raphterra: «Attack life aggressively while stalling with 6+5» e «Shanks 10 + Electrical Luna to stall their wide board».',
+   nuovo:'Rondino (16/09): favorevole, non affamare, letale fisso 7-7-9. Impact (17/09): «a lot chiller than you think», ma prima costruisci la board e poi attacchi tutto insieme — sul quando attaccare i due si contraddicono.',
+   tech:[['OP08-036','Electrical Luna','Raphterra: congela la loro board larga insieme a Shanks'],
+         ['OP17-031','Yasopp','NebulusTCG: mulligan per Yasopp; Rondino (16/09): Yasopp sulla Gorgon sister']]},
+ 'py-pudding':{nome:'Purple Yellow Pudding', carta:'OP08-058', lista:'draw',
+   score:{draw:3},
+   turno:'Primo (NebulusTCG)',
+   piano:'NebulusTCG: «1st: Very Favored / 2nd: Very Favored», mulligan duro per Yasopp.',
+   tech:[['OP17-031','Yasopp (4 copie)','NebulusTCG: «Hard Mulligan for Yasopp»']]},
+ 'black-luffy':{nome:'Black Luffy (Elbaph)', carta:'OP17-079', lista:'trash',
+   score:{trash:3, starve:2.5},
+   turno:'Secondo (Raphterra, Rondino, NebulusTCG)',
+   piano:'Qui le fonti litigano: Rondino affama («Starve → Control board → Preserve resources → 10c Shanks → Stabilize»), NebulusTCG dice di NON starvare.',
+   nuovo:'Rondino (16/09): con il nuovo evento Black Luffy è «full-starved going first and second» — prima correva quando andava primo.',
+   tech:[[RS[0],RS[1],'Raphterra: tech del matchup; Rondino (16/09): è la carta che rende lo starve il default'],
+         ['OP14-037','For Fun','Raphterra: tech del matchup (e contro il 4C Saul)'],
+         ['ST24-004','Law & Bepo','NebulusTCG: «If the Black Luffy MU becomes too difficult I may play this card specifically for it»'],
+         ['ST32-002','Kouzuki Oden','NebulusTCG, mulligan: «Many Odens to lock up Saul / Docking / Loki»']]},
+ 'rb-sabo':{nome:'Red Black Sabo (Elbaph)', carta:'OP13-004', lista:'trash',
+   score:{trash:3, starve:2.5},
+   turno:'Secondo — tutte le fonti (Rondino, 16/09: «starve first and second»)',
+   piano:'Rondino: «Full starve them at 5 life until their board is cleared. Only then do we start attacking Leader.»',
+   nuovo:'Col rest spell il matchup si è girato: Impact (17/09) «went from bad to really good with the rest spell»; Rondino (16/09) lo dà favorevole. Si passa alla faccia solo quando loro vanno double 6-cost.',
+   tech:[[RS[0],RS[1],'Impact (17/09): rest spell con il leader sul loro 2-drop, poi «spell again on the Saul»; Raphterra (tech cheatsheet, Elbaf Aggro)'],
+         ['OP17-031','Yasopp','Impact: la risposta presto ai corpi da poco costo di Sabo'],
+         ['OP14-037','For Fun','Raphterra (tech cheatsheet, Elbaf Aggro)'],
+         ['OP14-033','Perona 5c','Raphterra: «Her stun is still very relevant … against Elbaf aggro decks» — Rondino (16/09) però l\'ha tolta']],
+   nota:'Nella Fast Decision Table del confronto: se nel tuo giro c\'è tanto Sabo, si parte da <b>LawSopp</b> di Impact.'},
+ 'red-ace':{nome:'Red Ace', carta:'OP16-001', lista:'starve',
+   score:{starve:3, trash:1},
+   turno:'Secondo — tutte le fonti',
+   piano:'Conflitto aperto nelle guide: Raphterra «RACE TO LETHAL», Rondino «Don\'t even start the race».',
+   nuovo:'Rondino (16/09): «favored (~80% first, easier second)» con lo starve totale — poke da 8 su Marco, Oden sopra; lo starve spegne il buff a 8k del leader.',
+   tech:[[RS[0],RS[1],'Rondino (16/09): lo starve con l\'evento è la linea che usa ora'],
+         ['ST32-002','Kouzuki Oden','Rondino (16/09): «Oden on top» mentre affami'],
+         ['OP07-026','Jewelry Bonney','Raphterra (tech cheatsheet): l\'unica tech che indicava contro Ace — Rondino l\'ha tolta']]},
+ 'p-kaido':{nome:'Purple Kaido', carta:'OP17-058', lista:'std',
+   score:{std:2, draw:1.5},
+   turno:'Primo (NebulusTCG, Impact, Raphterra)',
+   piano:'Raphterra: «Freeze 6C King with 5C Oden repeatedly» e «Shanks Decken carries».',
+   nuovo:'Impact (17/09): «super good», «first almost always»; i primi corpi sono Yasopp, poi Odens + stun sul King.',
+   tech:[['ST32-002','Kouzuki Oden','Raphterra; NebulusTCG va a mulligan per 2-3 Oden'],
+         ['OP06-033','Vander Decken IX','Raphterra: «Shanks Decken carries»'],
+         ['OP17-031','Yasopp','Impact (17/09): «First developed characters = Yasopps»']]},
+ 'rocks':{nome:'Blue Rocks', carta:'OP17-039', lista:'std',
+   score:{std:2, trash:1.5},
+   turno:'Secondo (NebulusTCG, Impact, Raphterra, Rondino)',
+   piano:'Impact: «all of its primary attackers are 7 cost or less, so it is extremely weak to Luna».',
+   nuovo:'Rondino (16/09): «~95%», starve di default. Impact (17/09): board control, non starve, e «Oden the John».',
+   tech:[['OP14-037','For Fun','Raphterra: colpisce il 4C Captain John'],
+         ['OP08-036','Electrical Luna','Impact: Rocks è debolissimo alla Luna; Rondino: senza risposta a Xebec «start digging aggressively for Lunas»'],
+         ['ST32-002','Kouzuki Oden','Raphterra: «Use Oden on Captain John to stop him from resting»; Impact (17/09) idem']]},
+ 'p-enel':{nome:'Purple Enel', carta:'OP15-058', lista:'trash',
+   score:{trash:3, hybrid:1.5},
+   turno:'Primo (NebulusTCG, Impact)',
+   piano:'Impact: «Getting Enel to 0 is basically game over». NebulusTCG segnala però la variante Hand Rip fra quelle che sta perdendo.',
+   nuovo:'Impact (17/09): «went from bad to really good with the rest spell» — «fighting Enel is miserable if you don\'t have it». Rondino (16/09): dipende dalla sua apertura (Holy → value control, Hom Hom → corsa).',
+   tech:[[RS[0],RS[1],'Impact (17/09): full starve + board control, finiscono prima loro le rimozioni'],
+         ['ST32-003','Dracule Mihawk 6c','Raphterra (tech cheatsheet)'],
+         ['OP14-033','Perona 5c','Raphterra (tech cheatsheet); Elijah (3/09): in una partita con Enel Perona «remained in play and attacked several times»']]},
+ 'luffy-ace':{nome:'Red Green Luffy & Ace', carta:'ST30-001', lista:'std',
+   score:{std:2, draw:1},
+   turno:'Secondo (NebulusTCG, Raphterra, Impact)',
+   piano:'Raphterra: «Spam 7k attacks to their leader … their deck does not have 2ks» e «freeze the end game with Luna».',
+   nuovo:'Impact (17/09): «you win the game the last turn before you die» — non si affama un leader che dà Rush; vita dispari (3 → 1). Elijah (27/08): «Attack Ace Luffy with repeated 7k swings and it dies».',
+   tech:[['ST32-002','Kouzuki Oden','Impact (17/09): «Oden is the most important 5»; NebulusTCG (mulligan)'],
+         ['OP08-036','Electrical Luna','Raphterra; Impact (17/09): tieni almeno 2 freeze per questo matchup']]},
+};
+
+function muScelti(ctx){
+  const si = CFG.steps.findIndex(s=>s.multi);
+  const st = CFG.steps[si];
+  return ctx.chosen[si].map(oi=>st.opts[oi].mu).filter(Boolean);
+}
+
+/* subito sotto al verdetto: cosa dicono i TUOI matchup e quali tech coprono di piu' */
+function riepilogoMatchup(ctx){
+  const ids = muScelti(ctx);
+  if(!ids.length) return '';
+  const verso = {};
+  ids.forEach(id=>{ (verso[MU[id].lista] ||= []).push(MU[id].nome); });
+  const righe = Object.entries(verso).sort((a,b)=>b[1].length-a[1].length).map(([k,nomi])=>
+    `<li><b>${LISTA_NOME[k]}</b>${k===ctx.win?' <span class="pill" style="color:#86efac;border-color:var(--green2)">la tua lista</span>':''}
+     — ${nomi.join(', ')}</li>`).join('');
+  const conta = {};
+  ids.forEach(id=>MU[id].tech.forEach(([c,n])=>{ (conta[c] ||= {n, mus:[]}).mus.push(MU[id].nome); }));
+  const techSum = Object.entries(conta).sort((a,b)=>b[1].mus.length-a[1].mus.length)
+    .map(([c,t])=>`<div class="tc"><img src="carte/${c}.png" alt="" loading="lazy">
+      <span><b>${t.n}</b><small>${t.mus.length>1?`copre ${t.mus.length} dei tuoi matchup`:t.mus[0]}</small></span></div>`).join('');
+  return `<div class="card" style="margin:16px 0;border-color:rgba(34,197,94,.45)">
+    <h3>🎯 I matchup che soffri tu</h3>
+    <p>Presi uno per uno, secondo le guide puntano a:</p>
+    <ul style="color:var(--dim);padding-left:18px;margin:6px 0 12px">${righe}</ul>
+    <p><b style="color:var(--txt)">Tech da mettere negli slot flessibili</b>, ordinate per quanti dei tuoi matchup coprono:</p>
+    <div class="mymu-tech" style="margin-top:10px">${techSum}</div>
+    <p style="margin-top:8px;font-size:.84rem">Il dettaglio matchup per matchup, con la fonte di ogni consiglio, è in fondo alla pagina.</p></div>`;
+}
+
+function mieiMatchup(ctx){
+  const ids = muScelti(ctx);
+  if(!ids.length) return `<div class="card" style="margin-top:16px"><h3>I tuoi matchup</h3>
+    <p>Hai detto che non ne soffri uno in particolare: il consiglio si basa solo sulle altre risposte.
+    Per i singoli leader c'è l'<a href="matchup.html">aggregatore matchup</a>.</p></div>`;
+
+  const schede = ids.map(id=>{
+    const m = MU[id];
+    const diversa = m.lista!==ctx.win;
+    return `<div class="mymu-c">
+      <div class="mymu-h"><img src="carte/${m.carta}.png" alt="" loading="lazy"><h4>${m.nome}</h4>
+        <span class="pill">🎲 ${m.turno}</span></div>
+      <p>${m.piano}</p>
+      ${m.nuovo?`<p class="mymu-new">🆕 ${m.nuovo}</p>`:''}
+      <div class="mymu-tech">${m.tech.map(([c,n,src])=>`<div class="tc"><img src="carte/${c}.png" alt="" loading="lazy">
+        <span><b>${n}</b><small>${src}</small></span></div>`).join('')}</div>
+      <p style="font-size:.84rem">${diversa
+        ? `📋 Preso da solo, questo matchup punta alla <b>${LISTA_NOME[m.lista]}</b>.`
+        : `📋 Coincide con la lista che ti è uscita: <b>${LISTA_NOME[m.lista]}</b>.`}
+        ${m.nota?`<br>${m.nota}`:''}
+        <a href="matchup.html#${id}">Apri il matchup →</a></p>
+    </div>`;
+  }).join('');
+
+  return `<h3 style="margin:30px 0 4px;font-size:1.2rem">I tuoi matchup, uno per uno</h3>
+    <p style="color:var(--dim);margin:0 0 4px">Turno consigliato, piano e tech — con la fonte di ogni consiglio.</p>
+    <div class="mymu">${schede}</div>`;
+}
+
 const CFG = {
- axes:{std:'Standard 6c Law', hybrid:'Ibrida Law+Mihawk', trash:'Trash build', starve:'Starve (Rondino)', draw:'Motore di pesca'},
+ axes:{std:'Standard 6c Law', hybrid:'Ibrida Law+Mihawk', trash:'Rest spell / Trash', starve:'Starve (Rondino)', draw:'Motore di pesca'},
+ afterTop: riepilogoMatchup,
+ after: mieiMatchup,
  steps:[
   {q:'Che campo ti aspetti al tuo prossimo evento?',
    hint:'Non il meta globale: quello che vedi davvero nella tua zona o nel tuo online.',
@@ -99,7 +273,16 @@ const CFG = {
     {label:'Tantissimo mirror', desc:'Metà delle partite contro un altro Green Mihawk.', score:{hybrid:3, std:2}},
     {label:'Tanti mazzi gialli', desc:'Robin, Linlin, Boa, Pudding.', score:{draw:3, std:1}},
     {label:'Tanto Elbaph aggro', desc:'Black Luffy e RB Sabo che riempiono il campo di corpi.', score:{trash:3, starve:2}},
-    {label:'Un po\' di tutto', desc:'Campo aperto, nessun archetipo dominante.', score:{std:3, draw:1}},
+    {label:'Un po\' di tutto', desc:'Campo aperto, nessun archetipo dominante.', score:{std:2, trash:2.5, draw:1}},
+   ]},
+  {q:'Contro cosa pensi di stare più sotto <em>tu</em>, come giocatore?',
+   hint:'Non i matchup brutti di Mihawk in generale: quelli in cui TU ti senti in difficoltà, per come giochi. È la tua sensazione personale, e pesa più di ogni altra risposta sulla lista che ti consiglio.',
+   multi:true,
+   weight:n=>Math.min(1.5, 4.5/n),
+   opts:[
+    ...Object.entries(MU).map(([id,m])=>({label:m.nome, img:`carte/${m.carta}.png`, mu:id,
+       score:m.score})),
+    {label:'Nessuno in particolare', desc:'Li soffro tutti più o meno uguale.', none:true, score:{}},
    ]},
   {q:'Qual è il modo in cui perdi più spesso?',
    hint:'La domanda più importante del quiz: la lista si costruisce da qui.',
@@ -172,7 +355,7 @@ const CFG = {
  results:{
   std:{eyebrow:'La lista che fa per te', title:'Standard 6c Law', tagline:'La lista più pulita e più facile da pilotare bene: nessuna scelta difficile, il core porta la partita.',
    html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
-     Hai detto che vuoi carte sempre giocabili e un campo aperto. Questa è la build che Raphterra chiama il caso base:
+     È la lista per chi vuole carte sempre giocabili e si aspetta un campo aperto. È la build che Raphterra chiama il caso base:
      quattro copie di tutto il core, zero slot situazionali. «The Core Carries».</div>
     ${lista('std')}
     <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
@@ -193,7 +376,8 @@ const CFG = {
 
   hybrid:{eyebrow:'La lista che fa per te', title:'Ibrida 6c Law + 6c Mihawk', tagline:'La build preferita da Raphterra, e la risposta diretta al problema di farsi pulire le weenie.',
    html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
-     Hai detto che perdi quando ti puliscono i searcher e salti il turno da 6. Questa build esiste esattamente per quello:
+     È la risposta per chi perde quando gli puliscono i searcher e salta il turno da 6 — e per chi vuole un corpo in più nel mirror.
+     Raphterra la preferisce proprio per quello:
      «This is one of the main reasons I am a fan of the 6C Mihawk + 6C Law hybrid build, since many players are aware
      of the impact of denying the on-curve 6C Law by clearing your weenies».</div>
     ${lista('hybrid')}
@@ -209,31 +393,55 @@ const CFG = {
      non trovi sempre il pezzo giusto. Se il tuo problema è il brick, questa non è la build: guarda il motore di pesca.</p></div>
     <p style="margin-top:16px"><a href="mirror.html">Vai alla sezione mirror →</a></p>`},
 
-  trash:{eyebrow:'La lista che fa per te', title:'Trash build', tagline:'Quattro Coffin Boat, quattro Trash Event: la build costruita per non farsi travolgere dai corpi.',
+  trash:{eyebrow:'La lista che fa per te', title:'Rest spell · Trash build', tagline:'Quattro «rest spell» e quattro Coffin Boat: la build di Raphterra che a settembre è diventata la scelta di Impact.',
    html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
-     Hai detto che ti aspetti tanto Elbaph aggro e che accetti volentieri una carta situazionale pur di avere la risposta.
-     Questa è la build con il massimo di rimozione a basso costo.</div>
+     È la build per un campo aperto e per chi soffre i mazzi da early game (Sabo, Enel, Black Luffy): il rest spell —
+     <b>I Never Bother to Remember the Faces of Trash</b> — tappa e scambia sui loro corpi presto, pesca una carta e fa da +3k.
+     Impact (17/09): «It is not a tech card, it is a whole game plan».</div>
     ${lista('trash')}
+    <div class="card" style="margin-top:12px;border-color:rgba(45,212,191,.45)"><h3>🆕 Aggiornamento 16–17 settembre</h3>
+     <p>Al regionale del weekend la lista col rest spell + 4 Coffin Boat è arrivata <b>seconda</b>; Impact la sceglie per il weekend.
+     Questi i conteggi che indica lui:</p>
+     <div class="tscroll"><table style="width:100%;border-collapse:collapse;font-size:.86rem;margin-top:8px">
+      <thead><tr style="color:var(--gold);text-align:left"><th style="padding:4px">Slot</th><th>Copie</th><th>Perché (Impact)</th></tr></thead>
+      <tbody>
+       <tr><td style="padding:4px"><b>Rest spell</b></td><td>4</td><td>It is the game plan, not a tech</td></tr>
+       <tr><td style="padding:4px"><b>Coffin Boat</b></td><td>3-4</td><td>"Four stages feel so good"; 2nd boat is free</td></tr>
+       <tr><td style="padding:4px"><b>Shanks</b></td><td>4</td><td>Shanks-Shanks &gt; Shanks-Bepo</td></tr>
+       <tr><td style="padding:4px"><b>Yasopp</b></td><td>3</td><td>Never cut: draw + kill + re-stand</td></tr>
+       <tr><td style="padding:4px"><b>Otama</b></td><td>4</td><td>Kiku = Otama that always whiffs</td></tr>
+       <tr><td style="padding:4px"><b>Samurai</b></td><td>2</td><td>Must hit sometimes; resolves more with rest spell</td></tr>
+       <tr><td style="padding:4px"><b>Luna / Stronger</b></td><td>0-2 / 2</td><td>Stronger with 4 stages; ≤2 freezes for Luffy-Ace</td></tr>
+       <tr><td style="padding:4px"><b>Radical Beam</b></td><td>3</td><td>Unconditional defense</td></tr>
+       <tr><td style="padding:4px"><b>DMG</b></td><td>1</td><td>Costs 1 here; lethal tool vs Robin and mirror</td></tr>
+      </tbody></table></div>
+     <p style="margin-top:10px">Rondino (16/09) va nella stessa direzione con <b>3</b> copie: fuori Bonney e Perona 5c, 2 Luna, 6 counter spell.
+     Rispetto alla lista qui sopra (Raphterra, Deck 4) cambia soprattutto una cosa: Impact vuole <b>4 Otama e nessun Kikunojo</b> —
+     «Kikunojo is an Otama that always whiffed».</p>
+     <p style="margin-top:8px"><a href="guide/impact.html#qa1709">Le note complete del Q&amp;A di Impact →</a> ·
+     <a href="guide/rondino.html#06-masterclass-16-09">La masterclass di Rondino →</a></p></div>
     <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
      <ul style="color:var(--dim);padding-left:18px">
-      <li>Il <b>Trash Event</b> pulisce le weenie avversarie presto: nel mirror ti chiude fuori il loro 6C Law.</li>
-      <li>Quattro <b>Coffin Boat</b> e due Kikunojo rendono il motore più stabile e riducono i whiff di Otama.</li>
-      <li>Solo due Otama e due Samurai: non contare sul pescare tanto, conta sul togliere bersagli.</li>
+      <li>Il rest spell con il DON!! del leader sul loro corpo da 2 al turno 2: tu spendi 0 carte, loro perdono il corpo o 2 carte per salvarlo.</li>
+      <li>Poi <b>rest → remove → repeat</b> (spell, Yasopp, Law, Yasopp) finché la board è tua; allora carte → vita → kill in 2-3 turni.</li>
+      <li>Funziona solo se hai già attaccanti in campo: «removal without a board is just removal». Bersaglio migliore: le loro 1-drop (gli neghi il Law).</li>
       <li>Contro Black Luffy: tutti gli swing grossi sui giganti da 12+ costo, i piccoli sulle weenie.</li>
      </ul></div>
     <div class="card" style="margin-top:12px"><h3>Il rovescio della medaglia</h3>
-     <p>NebulusTCG taglia For Fun proprio perché la usa poco nel mirror, che considera il matchup più importante.
-     Se nel tuo campo il mirror pesa più dell'aggro, questa build ti lascia qualche carta morta di troppo.</p></div>
-    <p style="margin-top:16px"><a href="matchup.html#black-luffy">Vedi il matchup Black Luffy →</a></p>`},
+     <p>NebulusTCG (agosto) taglia For Fun proprio perché la usa poco nel mirror, che considera il matchup più importante.
+     Impact (17/09) la vede diversamente: nel mirror la build col rest spell «you're not making sacrifices to play it» — però ammette che
+     la build Perona/tempo, quella che ha vinto il regionale, resta «best in the mirror».</p></div>
+    <p style="margin-top:16px"><a href="matchup.html#rb-sabo">Vedi il matchup Sabo →</a> · <a href="matchup.html#p-enel">Enel →</a></p>`},
 
   starve:{eyebrow:'La lista che fa per te', title:'La lista di Rondino — lo starve', tagline:'Per chi non vuole correre: affamare, controllare, e chiudere solo quando è sicuro.',
    html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
-     Hai detto che non arrivi vivo al turno di Shanks e che le partite lunghe ti piacciono. La linea di Rondino
+     È la lista per chi non arriva vivo al turno di Shanks e non ha paura delle partite lunghe. La linea di Rondino
      è costruita esattamente per quello: non prendere vita all'avversario finché la sua board non è pulita.</div>
     ${lista('starve')}
     <div class="card" style="margin-top:12px"><h3>Lo schema, nelle sue parole</h3>
      <p style="font-size:1.05rem;color:var(--txt)"><b>Starve → Trade into Board → Preserve Life → 10c Shanks → Stabilize → Attack Face</b></p>
      <p style="color:var(--gold)">«Don't rush the last step.»</p>
+     <p style="color:var(--dojo);font-size:.9rem">🆕 Masterclass 16/09: «Starve by default (Sabo, Ace, Black Luffy, Rocks); never starve Robin/Boa; never starve in the mirror.» E: «Once one Shanks sticks, the eating phase starts — everything he plays is nuked.»</p>
      <p>Contro Sabo: «Full starve them at 5 life until their board is cleared. Only then do we start attacking Leader.»
      Contro Ace: «Don't even start the race» — e soprattutto «<b>Don't attack Leader just because you have spare attacks</b>».</p></div>
     <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
@@ -250,8 +458,8 @@ const CFG = {
 
   draw:{eyebrow:'La lista che fa per te', title:'Il motore di pesca', tagline:'Quattro Coffin Boat, tre Luna, massima consistenza: la lista di NebulusTCG.',
    html:`<div class="note"><b style="display:block;margin-bottom:4px">Perché questa</b>
-     Hai detto che ti bricchi e che ti affidi a un ordine di ricerca preciso. Questa build massimizza il motore:
-     quattro Coffin Boat più tutti i searcher a quattro copie.</div>
+     È la lista per chi si bricca, per chi vuole un ordine di ricerca preciso e per chi soffre i mazzi gialli.
+     Massimizza il motore: quattro Coffin Boat più tutti i searcher a quattro copie.</div>
     ${lista('draw')}
     <div class="card" style="margin-top:12px"><h3>Come si gioca</h3>
      <ul style="color:var(--dim);padding-left:18px">
