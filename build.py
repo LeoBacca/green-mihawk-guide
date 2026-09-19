@@ -45,6 +45,7 @@ CHAPTERS = [
     ("rondino", "04-strategy",  "4. General deck strategy",["file:rondino/04-general-deck-strategy.md"], "La guida (Metafy)"),
     ("rondino", "05-mu-bible",  "5. The matchups bible",   ["parts:rond-05-mu-bible"], "La guida (Metafy)"),
     # nessuna sorgente da cucire: il file e' gia' la trascrizione finale del PDF
+    ("rondino", "05b-enel",     "Vs Enel",                 ["file:rondino/05b-enel.md"], "La guida (Metafy)"),
     ("rondino", "06-masterclass-16-09", "Masterclass 16/09 · aggiornamento", [], "Sessioni (Dog of Wisdom)"),
 
     ("nebulus", "13-whatis",     "What is Mihawk?",            ["parts:neb-13-whatis"], "Il mazzo"),
