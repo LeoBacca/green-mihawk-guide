@@ -69,6 +69,10 @@ Le catture PDF di due capitoli si interrompono per un limite dello screenshot (F
 
 Per recuperarli serve una nuova cattura di quelle due pagine Metafy.
 
+> La seconda cattura di Raphterra del 19/09 (`GUARDARE BENE INFONDO.pdf`) è identica alla prima: stessa altezza massima
+> (32 tile), stessa fine sul titolo *Vs. Red Black Sabo*. Sabo, Enel e tutto ciò che segue vanno catturati **a pezzi**
+> (FireShot «Capture selected area» partendo da Sabo in giù) oppure copiando il testo della pagina in un `.txt`.
+
 ## Come è costruito
 
 ```
